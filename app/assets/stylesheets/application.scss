@@ -14,16 +14,20 @@
  *
  */
 
-$light:                             #444;
-$white:                             #fff;
-$gray:                              #444 ;
-$gray-darker:                       #222 ;
-$gray-dark:                         #282828 ;
-$gray-light:                        #888 ;
+$light:                             #3872a2;
+$white:                             #dcf0ff;
+$gray:                              #444;
+$gray-darker:                       #222;
+$gray-dark:                         #282828;
+$gray-light:                        #444;
+$blue-light:                        #f0faff;
+$blue-stripe:                       #faf0e0;
 
-$link-color:                        #6df;
-$nav-hover-bg-color:                #555;
-$nav-active-bg-color:               #222;
+$link-color:                        #26d;
+$card-color:                        $gray-light;
+$card-cap-bg:                       $blue-stripe;
+$nav-hover-bg-color:                #4387a5;
+$nav-active-bg-color:               #2d5594;
 $navbar-light-color:                $white;
 $navbar-light-hover-color:          #4cf;
 $navbar-light-active-color:         $white;
@@ -32,7 +36,7 @@ $dropdown-link-hover-bg:            $link-color;
 $dropdown-link-active-bg:           $link-color;
 $table-border-color:                #888 ;
 $table-hover-bg:                    $gray;
-$nav-border-color:                  MediumSeaGreen;
+$nav-border-color:                  #00d3fd;
 
 // Cyborgテーマからページネーションのカラーリングをコピー
 $pagination-color:                  #fff;
@@ -52,13 +56,14 @@ $pagination-disabled-color:         $gray-light;
 $pagination-disabled-bg:            $gray-darker;
 $pagination-disabled-border-color:  #888;
 
-@import "bootswatch/darkly/variables";
+@import "bootswatch/flatly/variables";
 @import "bootstrap";
 
 
 body { padding-top: 5rem; }
 
-@import "bootswatch/darkly/bootswatch";
+@import "bootswatch/flatly/bootswatch";
+@import "tempusdominus-bootstrap-4.css";
 
 .navbar-custom {
     border-color: $nav-border-color;
@@ -118,6 +123,7 @@ label {
 }
 
 .card.top {
+    background-color: $blue-light;
     border-color: #aaa;
     border-style: solid;
     border-width: 0.05rem;
