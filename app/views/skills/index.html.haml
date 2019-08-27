@@ -1,0 +1,205 @@
+- @page_title = "設定スキル一覧"
+%h1= @page_title
+
+.card.desc
+  .card-header
+    - act_icon(true)
+    検索仕様
+    - act_desc(true)
+  .card-body
+    = render "layouts/base_desc"
+    %p
+      %span.example_select.example_toggle.pointer
+        - help_icon
+        入力例
+        - act_desc(false)
+    #example.closed
+      = render "layouts/input_desc"
+= search_form_for @search do |f|
+  %table.search_toggle.table.table-striped.table-bordered.table-hover
+    %tbody.pointer
+      %tr
+        %td{colspan: "5"}
+          - act_icon(true)
+          絞り込み検索
+          - act_desc(true)
+    %tbody
+      %tr
+      %tr
+        %td.indent
+        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "No", params_name: "e_no_form", placeholder: "Number")
+        - td_form(f, @form_params, @placeholder, class_name: "formText", label: "キャラクター名", params_name: "pc_name_form", placeholder: "Name")
+      %tr
+        %td.indent
+        - td_form(f, @form_params, @placeholder, params_name: "class_num_form",  label: "戦闘の種類", colspan: 3, label_td_class_name: "indent",
+                    checkboxes: [{label: "ストーリー・クエスト用", params_name: "is_pve", class_name: "after_space"},
+                                 {label: "対人戦用", params_name: "is_pvp"}])
+      %tr.sep
+        %td.indent
+        - td_form(f, @form_params, @placeholder, class_name: "formText",  label: "元スキル名", params_name: "skill_form", placeholder: "Skill", colspan: 3)
+      %tr.sep
+        %td.indent
+        - td_date_between_form(f, @form_params, @placeholder, class_name: nil,  label: "取得日", params_name: "created_at", data_target: "date", placeholder: nil, colspan: 3)
+
+    - #==========================================================================================================================
+    - tbody_toggle(@form_params, params_name: "show_name",
+                    label: {open: "スキル名を表示する", close: "スキル名を表示しない"},
+                    act_desc: "各キャラが設定したスキル名", base_first: false)
+    %tbody.closed
+      %tr
+        %td.indent
+        - td_form(f, @form_params, @placeholder, class_name: "formText",  label: "スキル名", params_name: "name_form", colspan: 3)
+
+    - #==========================================================================================================================
+    - tbody_toggle(@form_params, params_name: "show_skill_detail",
+                    label: {open: "スキル詳細を表示する", close: "スキル詳細を表示しない"},
+                    act_desc: "射程、SP、発動タイミング、効果、習得方法", base_first: false)
+    %tbody.closed
+      %tr
+        %td.indent
+        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "射程", params_name: "range_form")
+        - td_form(f, @form_params, @placeholder, params_name: "range_other_form", colspan: 3, label_td_class_name: "indent",
+                    checkboxes: [{label: "射程 -",           params_name: "range_no", class_name: "after_space"},
+                                 {label: "射程 ?", params_name: "range_random"}])
+      %tr
+        %td.indent
+        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "SP", params_name: "sp_form")
+        - td_form(f, @form_params, @placeholder, class_name: "formText",  label: "発動タイミング", params_name: "timing_form", placeholder: "Timing")
+      %tr
+        %td.indent
+        - td_form(f, @form_params, @placeholder, class_name: "formText",  label: "効果", params_name: "text_form", placeholder: "Effect", colspan: 3)
+      %tr
+        %td.indent
+        - td_form(f, @form_params, @placeholder, params_name: "class_num_form",label: "習得方法", colspan: 3, label_td_class_name: "indent",
+                    checkboxes: [{label: "クラス",           params_name: "no_artifact", class_name: "after_space"},
+                                 {label: "アーティファクト", params_name: "is_artifact"}])
+
+    - #==========================================================================================================================
+    - tbody_toggle(@form_params, params_name: "show_status",
+                    label: {open: "ステータスを表示する", close: "ステータスを表示しない"},
+                    act_desc: "筋力、体力……、隊列、ロール", base_first: false)
+    %tbody.closed
+      %tr.sep
+        %td.indent
+        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "筋力", params_name: "str_form")
+        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "体力", params_name: "vit_form")
+      %tr
+        %td.indent
+        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "感覚", params_name: "sense_form")
+        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "敏捷", params_name: "agi_form")
+      %tr
+        %td.indent
+        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "魔力", params_name: "mag_form")
+        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "知力", params_name: "int_form")
+      %tr
+        %td.indent
+        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "意志", params_name: "will_form")
+        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "魅力", params_name: "charm_form")
+      %tr.sep
+        %td.indent
+        - td_form(f, @form_params, @placeholder, params_name: "equip_form",label: "隊列", colspan: 3, label_td_class_name: "indent",
+                    checkboxes: [{label: "１列目", params_name: "line_1", class_name: "after_space"},
+                                 {label: "２列目", params_name: "line_2", class_name: "after_space"},
+                                 {label: "３列目", params_name: "line_3"}])
+      %tr
+        %td.indent
+        - td_form(f, @form_params, @placeholder, params_name: "equip_form",label: "ロール", colspan: 3, label_td_class_name: "indent",
+                    checkboxes: [{label: "アタッカー", params_name: "role_attacker", class_name: "after_space"},
+                                 {label: "タンク", params_name: "role_tank", class_name: "after_space", br: true},
+                                 {label: "サポート", params_name: "role_support", class_name: "after_space"},
+                                 {label: "ヒーラー", params_name: "role_healer", class_name: "after_space mobile_br"},
+                                 {label: "設定なし", params_name: "role_none"}])
+
+    - #==========================================================================================================================
+    - tbody_toggle(@form_params, params_name: "show_used",
+                    label: {open: "その他ステータス情報を表示する", close: "その他ステータス情報を表示しない"},
+                    act_desc: "消費済AP、消費済ステータスポイント、善行値", base_first: false)
+    %tbody.closed
+      %tr
+        %td.indent
+        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "消費済AP", params_name: "used_ap_form")
+        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "消費済ステータスポイント", params_name: "used_stp_form")
+      %tr
+        %td.indent
+        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "善行値", params_name: "goodness_form", colspan: 3)
+
+    - #==========================================================================================================================
+    %tbody
+      %tr.sep
+        %td.indent
+        %td.indent= hidden_field_tag :is_form, 1
+        %td{colspan: "3"}
+          - search_submit_button
+
+
+= paginate(@skills)
+%br
+ヒット数：#{ @count }件
+%br
+%br
+
+%table.table.table-striped.table-bordered.table-hover
+  %thead
+    %tr
+      %th= sort_link(@search, :e_no,"キャラクター(No)", default_order: :desc)
+      %th.sep= sort_link(@search, :battle_type, "種類", default_order: :desc)
+      %th.sep= sort_link(@search, :set_no, "No", default_order: :desc)
+      %th= sort_link(@search, :skill_id, "元スキル名", default_order: :desc)
+      - if @form_params["show_name"] == "1"
+        %th.sep= sort_link(@search, :name, "スキル名", default_order: :desc)
+      - if @form_params["show_skill_detail"] == "1"
+        %th.sep= sort_link(@search, :skill_range, "射程", default_order: :desc)
+        %th= sort_link(@search, :skill_sp, "SP", default_order: :desc)
+        %th= sort_link(@search, :skill_timing_id, "タイミング", default_order: :desc)
+        %th= sort_link(@search, :skill_text, "効果", default_order: :desc)
+      - if @form_params["show_status"] == "1"
+        %th.sep= sort_link(@search, :status_str, "筋力", default_order: :desc)
+        %th= sort_link(@search, :status_vit, "体力", default_order: :desc)
+        %th= sort_link(@search, :status_sense, "感覚", default_order: :desc)
+        %th= sort_link(@search, :status_agi, "敏捷", default_order: :desc)
+        %th= sort_link(@search, :status_mag, "魔力", default_order: :desc)
+        %th= sort_link(@search, :status_int, "知力", default_order: :desc)
+        %th= sort_link(@search, :status_will, "意志", default_order: :desc)
+        %th= sort_link(@search, :status_charm, "魅力", default_order: :desc)
+        %th.sep= sort_link(@search, :status_line, "隊列", default_order: :desc)
+        %th= sort_link(@search, :status_role_id, "ロール", default_order: :desc)
+      - if @form_params["show_used"] == "1"
+        %th.sep= sort_link(@search, :status_used_ap, "済AP", default_order: :desc)
+        %th= sort_link(@search, :status_used_stp, "済ステP", default_order: :desc)
+        %th= sort_link(@search, :status_goodness, "善行値", default_order: :desc)
+      %th.sep= sort_link(@search, :created_at, "取得日", default_order: :desc)
+      %th.sep{colspan: "2"} 結果リンク
+  %tbody
+    - @skills.each do |skill|
+      %tr
+        %td= pc_name_text(skill.e_no, skill.pc_name)
+        %td.sep
+          = "冒険" if skill.battle_type == 0
+          = "対人" if skill.battle_type == 1
+        %td.sep= skill.set_no
+        %td= skill.skill.name if skill.skill
+        - if @form_params["show_name"] == "1"
+          %td.sep= skill.name
+        - if @form_params["show_skill_detail"] == "1"
+          %td.sep= range_text(skill.skill.range)
+          %td= skill.skill.sp
+          %td= skill.skill.timing.name if skill.skill.timing
+          %td= skill.skill.text
+        - if @form_params["show_status"] == "1"
+          %td.sep= skill.status.str
+          %td= skill.status.vit
+          %td= skill.status.sense
+          %td= skill.status.agi
+          %td= skill.status.mag
+          %td= skill.status.int
+          %td= skill.status.will
+          %td= skill.status.charm
+          %td.sep= skill.status.line
+          %td= skill.status.role.name if skill.status.role
+        - if @form_params["show_used"] == "1"
+          %td.sep= skill.status.used_ap
+          %td= skill.status.used_stp
+          %td= skill.status.goodness
+        %td.sep= skill.created_at.to_s(:jp_date)
+        %td.sep= character_link(skill.e_no)
+= paginate(@skills)

@@ -8,5 +8,6 @@ class ApplicationController < ActionController::Base
         @placeholder["Artifact"]   = "例）賢者の石/演習用核爆弾"
         @placeholder["Cost"]  = "例）SP30/SP50+"
         @placeholder["Effect"]  = "例）ATK -MATK 増"
+        @placeholder["Timing"]  = "例）戦闘開始時/通常時"
     end
 end

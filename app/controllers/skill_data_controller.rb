@@ -19,7 +19,6 @@ class SkillDataController < ApplicationController
 
     params_to_form(params, @form_params, column_name: "skill_id", params_name: "skill_id_form", type: "number")
     params_to_form(params, @form_params, column_name: "name", params_name: "name_form", type: "number")
-    params_to_form(params, @form_params, column_name: "range", params_name: "range_form", type: "number")
     params_to_form(params, @form_params, column_name: "cost_id", params_name: "cost_id_form", type: "number")
     params_to_form(params, @form_params, column_name: "sp", params_name: "sp_form", type: "number")
     params_to_form(params, @form_params, column_name: "timing_id", params_name: "timing_id_form", type: "number")
@@ -32,6 +31,8 @@ class SkillDataController < ApplicationController
     checkbox_params_set_query_any(params, @form_params, query_name: "range_eq_any",
                              checkboxes: [{params_name: "range_no", value: -1},
                                           {params_name: "range_random", value: -2}])
+
+    params_to_form(params, @form_params, column_name: "range", params_name: "range_form", type: "number")
 
     checkbox_params_set_query_any(params, @form_params, query_name: "is_artifact_eq_any",
                              checkboxes: [{params_name: "no_artifact", value: 0},

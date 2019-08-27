@@ -54,6 +54,7 @@
       %th= sort_link(@search, :e_no,"キャラクター(No)", default_order: :desc)
       %th= sort_link(@search, :artifact_id, "装備名", default_order: :desc)
       %th= sort_link(@search, :equip_num, "装備箇所", default_order: :desc)
+      %th.sep= sort_link(@search, :created_at, "取得日", default_order: :desc)
       %th.sep{colspan: "2"} 結果リンク
   %tbody
     - @equips.each do |equip|
@@ -61,5 +62,6 @@
         %td= pc_name_text(equip.e_no, equip.pc_name)
         %td= equip.artifact.name if equip.artifact
         %td= equip.equip_num
+        %td.sep= equip.created_at.to_s(:jp_date)
         %td.sep= character_link(equip.e_no)
 = paginate(@equips)

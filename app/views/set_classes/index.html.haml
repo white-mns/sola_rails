@@ -79,6 +79,7 @@
       %th= sort_link(@search, :class_id, "クラス名", default_order: :desc)
       %th= sort_link(@search, :class_num, "種類", default_order: :desc)
       %th= sort_link(@search, :lv, "Lv", default_order: :desc)
+      %th.sep= sort_link(@search, :created_at, "取得日", default_order: :desc)
       %th.sep{colspan: "2"} 結果リンク
   %tbody
     - @set_classes.each do |set_class|
@@ -90,5 +91,6 @@
           = "サブ1" if set_class.class_num == 2
           = "サブ2" if set_class.class_num == 3
         %td= set_class.lv
+        %td.sep= set_class.created_at.to_s(:jp_date)
         %td.sep= character_link(set_class.e_no)
 = paginate(@set_classes)

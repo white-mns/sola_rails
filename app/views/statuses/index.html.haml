@@ -29,7 +29,7 @@
         %td.indent
         - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "No", params_name: "e_no_form", placeholder: "Number")
         - td_form(f, @form_params, @placeholder, class_name: "formText", label: "キャラクター名", params_name: "pc_name_form", placeholder: "Name")
-      %tr
+      %tr.sep
         %td.indent
         - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "筋力", params_name: "str_form")
         - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "体力", params_name: "vit_form")
@@ -45,7 +45,7 @@
         %td.indent
         - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "意志", params_name: "will_form")
         - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "魅力", params_name: "charm_form")
-      %tr
+      %tr.sep
         %td.indent
         - td_form(f, @form_params, @placeholder, params_name: "equip_form",label: "隊列", colspan: 3, label_td_class_name: "indent",
                     checkboxes: [{label: "１列目", params_name: "line_1", class_name: "after_space"},
@@ -93,7 +93,7 @@
   %thead
     %tr
       %th= sort_link(@search, :e_no,"キャラクター(No)", default_order: :desc)
-      %th= sort_link(@search, :str, "筋力", default_order: :desc)
+      %th.sep= sort_link(@search, :str, "筋力", default_order: :desc)
       %th= sort_link(@search, :vit, "体力", default_order: :desc)
       %th= sort_link(@search, :sense, "感覚", default_order: :desc)
       %th= sort_link(@search, :agi, "敏捷", default_order: :desc)
@@ -113,7 +113,7 @@
     - @statuses.each do |status|
       %tr
         %td= pc_name_text(status.e_no, status.pc_name)
-        %td= status.str
+        %td.sep= status.str
         %td= status.vit
         %td= status.sense
         %td= status.agi

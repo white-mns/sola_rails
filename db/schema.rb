@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_27_074442) do
+ActiveRecord::Schema.define(version: 2019_08_27_081603) do
 
   create_table "equips", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
     t.integer "e_no"
@@ -74,6 +74,16 @@ ActiveRecord::Schema.define(version: 2019_08_27_074442) do
     t.index ["skill_id"], name: "index_skill_data_on_skill_id"
     t.index ["sp"], name: "index_skill_data_on_sp"
     t.index ["timing_id"], name: "index_skill_data_on_timing_id"
+  end
+
+  create_table "skills", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.integer "e_no"
+    t.integer "battle_type"
+    t.integer "set_no"
+    t.integer "skill_id"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "statuses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
