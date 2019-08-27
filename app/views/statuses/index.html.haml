@@ -1,4 +1,4 @@
-- @page_title = "ステータス一覧"
+- @page_title = "ステータス・クラス・装備 一覧"
 %h1= @page_title
 
 .card.desc
@@ -31,6 +31,15 @@
         - td_form(f, @form_params, @placeholder, class_name: "formText", label: "キャラクター名", params_name: "pc_name_form", placeholder: "Name")
       %tr.sep
         %td.indent
+        - td_date_between_form(f, @form_params, @placeholder, class_name: nil,  label: "取得日", params_name: "created_at", data_target: "date", placeholder: nil, colspan: 3)
+    
+    - #==========================================================================================================================
+    - tbody_toggle(@form_params, params_name: "show_status",
+                    label: {open: "ステータスを表示する", close: "ステータスを表示しない"},
+                    act_desc: "筋力、体力……、隊列、ロール", base_first: true)
+    %tbody
+      %tr.sep
+        %td.indent
         - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "筋力", params_name: "str_form")
         - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "体力", params_name: "vit_form")
       %tr
@@ -59,13 +68,10 @@
                                  {label: "サポート", params_name: "role_support", class_name: "after_space"},
                                  {label: "ヒーラー", params_name: "role_healer", class_name: "after_space mobile_br"},
                                  {label: "設定なし", params_name: "role_none"}])
-      %tr.sep
-        %td.indent
-        - td_date_between_form(f, @form_params, @placeholder, class_name: nil,  label: "取得日", params_name: "created_at", data_target: "date", placeholder: nil, colspan: 3)
     
     - #==========================================================================================================================
     - tbody_toggle(@form_params, params_name: "show_used",
-                    label: {open: "その他情報を表示する", close: "その他情報を表示しない"},
+                    label: {open: "その他ステータスを表示する", close: "その他ステータスを表示しない"},
                     act_desc: "消費済AP、消費済ステータスポイント、善行値", base_first: false)
     %tbody.closed
       %tr
@@ -75,6 +81,119 @@
       %tr
         %td.indent
         - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "善行値", params_name: "goodness_form", colspan: 3)
+    
+    - #==========================================================================================================================
+    - tbody_toggle(@form_params, params_name: "show_class",
+                    label: {open: "クラスを表示する", close: "クラスを表示しない"},
+                    act_desc: "メインクラス、メインクラスLv、サブクラス", base_first: false)
+    %tbody.closed
+      %tr
+        %td.indent
+        - td_form(f, @form_params, @placeholder, params_name: "main_class_form",label: "メインクラス", colspan: 3, label_td_class_name: "indent",
+                    checkboxes: [{label: "ファイター",     params_name: "main_fighter",        class_name: "after_space"},
+                                 {label: "ブシドー",       params_name: "main_bushido",        class_name: "after_space", br: true},
+                                 {label: "クルセイダー",   params_name: "main_crusader",       class_name: "after_space"},
+                                 {label: "ウォーリーダー", params_name: "main_war_leader",     class_name: "after_space", br: true},
+                                 {label: "シューター",     params_name: "main_shooter",        class_name: "after_space"},
+                                 {label: "シーフ",         params_name: "main_thief",          class_name: "after_space", br: true},
+                                 {label: "ニンジャ",       params_name: "main_ninja",          class_name: "after_space"},
+                                 {label: "アクロバット",   params_name: "main_acrobat",        class_name: "after_space", br: true},
+                                 {label: "メイジ",         params_name: "main_mage",           class_name: "after_space"},
+                                 {label: "ソーサルナイト", params_name: "main_sorcery_night",  class_name: "after_space", br: true},
+                                 {label: "エンチャンター", params_name: "main_enchanter",      class_name: "after_space"},
+                                 {label: "シャーマン",     params_name: "main_shaman",         class_name: "after_space", br: true},
+                                 {label: "プリースト",     params_name: "main_priest",         class_name: "after_space"},
+                                 {label: "タイムシフター", params_name: "main_time_shifter",   class_name: "after_space", br: true},
+                                 {label: "バトルバード",   params_name: "main_battle_bard",    class_name: "after_space"},
+                                 {label: "ダンサー",       params_name: "main_dancer",         class_name: "after_space"}])
+      %tr
+        %td.indent
+        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "メインLv", params_name: "main_lv_form", colspan: 3)
+     
+    - #==========================================================================================================================
+    - tbody_toggle(@form_params, params_name: "show_sub_class",
+                    label: {open: "サブクラスで絞り込む", close: "サブクラスでの絞り込みを表示しない"},
+                    act_desc: "サブクラス1or2", base_first: false)
+    %tbody.closed
+      %tr
+        %td.indent
+        - td_form(f, @form_params, @placeholder, params_name: "main_class_form",label: "サブクラス1or2", colspan: 3, label_td_class_name: "indent",
+                    checkboxes: [{label: "ファイター",     params_name: "sub_fighter",        class_name: "after_space"},
+                                 {label: "ブシドー",       params_name: "sub_bushido",        class_name: "after_space", br: true},
+                                 {label: "クルセイダー",   params_name: "sub_crusader",       class_name: "after_space"},
+                                 {label: "ウォーリーダー", params_name: "sub_war_leader",     class_name: "after_space", br: true},
+                                 {label: "シューター",     params_name: "sub_shooter",        class_name: "after_space"},
+                                 {label: "シーフ",         params_name: "sub_thief",          class_name: "after_space", br: true},
+                                 {label: "ニンジャ",       params_name: "sub_ninja",          class_name: "after_space"},
+                                 {label: "アクロバット",   params_name: "sub_acrobat",        class_name: "after_space", br: true},
+                                 {label: "メイジ",         params_name: "sub_mage",           class_name: "after_space"},
+                                 {label: "ソーサルナイト", params_name: "sub_sorcery_night",  class_name: "after_space", br: true},
+                                 {label: "エンチャンター", params_name: "sub_enchanter",      class_name: "after_space"},
+                                 {label: "シャーマン",     params_name: "sub_shaman",         class_name: "after_space", br: true},
+                                 {label: "プリースト",     params_name: "sub_priest",         class_name: "after_space"},
+                                 {label: "タイムシフター", params_name: "sub_time_shifter",   class_name: "after_space", br: true},
+                                 {label: "バトルバード",   params_name: "sub_battle_bard",    class_name: "after_space"},
+                                 {label: "ダンサー",       params_name: "sub_dancer",         class_name: "after_space"}])
+     
+    - #==========================================================================================================================
+    - tbody_toggle(@form_params, params_name: "show_sub_detail",
+                    label: {open: "サブクラスで細かく絞り込む", close: "サブクラスで細かく絞り込みを表示しない"},
+                    act_desc: "サブクラス1、サブクラス1Lv、サブクラス2、サブクラス2Lv", base_first: false)
+    %tbody.closed
+      %tr
+        %td.indent
+        - td_form(f, @form_params, @placeholder, params_name: "main_class_form",label: "サブクラス1", colspan: 3, label_td_class_name: "indent",
+                    checkboxes: [{label: "ファイター",     params_name: "sub1_fighter",        class_name: "after_space"},
+                                 {label: "ブシドー",       params_name: "sub1_bushido",        class_name: "after_space", br: true},
+                                 {label: "クルセイダー",   params_name: "sub1_crusader",       class_name: "after_space"},
+                                 {label: "ウォーリーダー", params_name: "sub1_war_leader",     class_name: "after_space", br: true},
+                                 {label: "シューター",     params_name: "sub1_shooter",        class_name: "after_space"},
+                                 {label: "シーフ",         params_name: "sub1_thief",          class_name: "after_space", br: true},
+                                 {label: "ニンジャ",       params_name: "sub1_ninja",          class_name: "after_space"},
+                                 {label: "アクロバット",   params_name: "sub1_acrobat",        class_name: "after_space", br: true},
+                                 {label: "メイジ",         params_name: "sub1_mage",           class_name: "after_space"},
+                                 {label: "ソーサルナイト", params_name: "sub1_sorcery_night",  class_name: "after_space", br: true},
+                                 {label: "エンチャンター", params_name: "sub1_enchanter",      class_name: "after_space"},
+                                 {label: "シャーマン",     params_name: "sub1_shaman",         class_name: "after_space", br: true},
+                                 {label: "プリースト",     params_name: "sub1_priest",         class_name: "after_space"},
+                                 {label: "タイムシフター", params_name: "sub1_time_shifter",   class_name: "after_space", br: true},
+                                 {label: "バトルバード",   params_name: "sub1_battle_bard",    class_name: "after_space"},
+                                 {label: "ダンサー",       params_name: "sub1_dancer",         class_name: "after_space"}])
+      %tr
+        %td.indent
+        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "サブ1Lv", params_name: "sub1_lv_form", colspan: 3)
+      %tr
+        %td.indent
+        - td_form(f, @form_params, @placeholder, params_name: "main_class_form",label: "サブクラス2", colspan: 3, label_td_class_name: "indent",
+                    checkboxes: [{label: "ファイター",     params_name: "sub2_fighter",        class_name: "after_space"},
+                                 {label: "ブシドー",       params_name: "sub2_bushido",        class_name: "after_space", br: true},
+                                 {label: "クルセイダー",   params_name: "sub2_crusader",       class_name: "after_space"},
+                                 {label: "ウォーリーダー", params_name: "sub2_war_leader",     class_name: "after_space", br: true},
+                                 {label: "シューター",     params_name: "sub2_shooter",        class_name: "after_space"},
+                                 {label: "シーフ",         params_name: "sub2_thief",          class_name: "after_space", br: true},
+                                 {label: "ニンジャ",       params_name: "sub2_ninja",          class_name: "after_space"},
+                                 {label: "アクロバット",   params_name: "sub2_acrobat",        class_name: "after_space", br: true},
+                                 {label: "メイジ",         params_name: "sub2_mage",           class_name: "after_space"},
+                                 {label: "ソーサルナイト", params_name: "sub2_sorcery_night",  class_name: "after_space", br: true},
+                                 {label: "エンチャンター", params_name: "sub2_enchanter",      class_name: "after_space"},
+                                 {label: "シャーマン",     params_name: "sub2_shaman",         class_name: "after_space", br: true},
+                                 {label: "プリースト",     params_name: "sub2_priest",         class_name: "after_space"},
+                                 {label: "タイムシフター", params_name: "sub2_time_shifter",   class_name: "after_space", br: true},
+                                 {label: "バトルバード",   params_name: "sub2_battle_bard",    class_name: "after_space"},
+                                 {label: "ダンサー",       params_name: "sub2_dancer",         class_name: "after_space"}])
+      %tr
+        %td.indent
+        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "サブ2Lv", params_name: "sub2_lv_form", colspan: 3)
+    
+    - #==========================================================================================================================
+    - tbody_toggle(@form_params, params_name: "show_equip",
+                    label: {open: "装備アーティファクトを表示する", close: "装備アーティファクトを表示しない"}, base_first: false)
+    %tbody.closed
+      %tr
+        %td.indent
+        - td_form(f, @form_params, @placeholder, class_name: "formText",  label: "装備アーティファクト", params_name: "artifact_form", placeholder: "Artifact", colspan: 3)
+    
+    - #==========================================================================================================================
     %tbody
       %tr.sep
         %td.indent
@@ -93,40 +212,61 @@
   %thead
     %tr
       %th= sort_link(@search, :e_no,"キャラクター(No)", default_order: :desc)
-      %th.sep= sort_link(@search, :str, "筋力", default_order: :desc)
-      %th= sort_link(@search, :vit, "体力", default_order: :desc)
-      %th= sort_link(@search, :sense, "感覚", default_order: :desc)
-      %th= sort_link(@search, :agi, "敏捷", default_order: :desc)
-      %th= sort_link(@search, :mag, "魔力", default_order: :desc)
-      %th= sort_link(@search, :int, "知力", default_order: :desc)
-      %th= sort_link(@search, :will, "意志", default_order: :desc)
-      %th= sort_link(@search, :charm, "魅力", default_order: :desc)
-      %th.sep= sort_link(@search, :line, "隊列", default_order: :desc)
-      %th= sort_link(@search, :role_id, "ロール", default_order: :desc)
+      - if @form_params["show_status"] == "1"
+        %th.sep= sort_link(@search, :str, "筋力", default_order: :desc)
+        %th= sort_link(@search, :vit, "体力", default_order: :desc)
+        %th= sort_link(@search, :sense, "感覚", default_order: :desc)
+        %th= sort_link(@search, :agi, "敏捷", default_order: :desc)
+        %th= sort_link(@search, :mag, "魔力", default_order: :desc)
+        %th= sort_link(@search, :int, "知力", default_order: :desc)
+        %th= sort_link(@search, :will, "意志", default_order: :desc)
+        %th= sort_link(@search, :charm, "魅力", default_order: :desc)
+        %th.sep= sort_link(@search, :line, "隊列", default_order: :desc)
+        %th= sort_link(@search, :role_id, "ロール", default_order: :desc)
       - if @form_params["show_used"] == "1"
         %th.sep= sort_link(@search, :used_ap, "済AP", default_order: :desc)
         %th= sort_link(@search, :used_stp, "済ステP", default_order: :desc)
         %th= sort_link(@search, :goodness, "善行値", default_order: :desc)
+      - if @form_params["show_class"] == "1"
+        %th.sep= sort_link(@search, :main_class_class_id, "メイン", default_order: :desc)
+        %th= sort_link(@search, :main_class_lv, "Lv", default_order: :desc)
+        %th.sep= sort_link(@search, :sub1_class_class_id, "サブ1", default_order: :desc)
+        %th= sort_link(@search, :sub1_class_lv, "Lv", default_order: :desc)
+        %th.sep= sort_link(@search, :sub2_class_class_id, "サブ2", default_order: :desc)
+        %th= sort_link(@search, :sub2_class_lv, "Lv", default_order: :desc)
+      - if @form_params["show_equip"] == "1"
+        %th.sep= sort_link(@search, :equips_artifact_id, "装備名", default_order: :desc)
       %th.sep= sort_link(@search, :created_at, "取得日", default_order: :desc)
       %th.sep{colspan: "2"} 結果リンク
   %tbody
     - @statuses.each do |status|
       %tr
         %td= pc_name_text(status.e_no, status.pc_name)
-        %td.sep= status.str
-        %td= status.vit
-        %td= status.sense
-        %td= status.agi
-        %td= status.mag
-        %td= status.int
-        %td= status.will
-        %td= status.charm
-        %td.sep= status.line
-        %td= status.role.name if status.role
+        - if @form_params["show_status"] == "1"
+          %td.sep= status.str
+          %td= status.vit
+          %td= status.sense
+          %td= status.agi
+          %td= status.mag
+          %td= status.int
+          %td= status.will
+          %td= status.charm
+          %td.sep= status.line
+          %td= status.role.name if status.role
         - if @form_params["show_used"] == "1"
           %td.sep= status.used_ap
           %td= status.used_stp
           %td= status.goodness
+        - if @form_params["show_class"] == "1"
+          %td.sep= status.main_class.set_class.name if status.main_class && status.main_class.set_class
+          %td= status.main_class.lv if status.main_class
+          %td.sep= status.sub1_class.set_class.name if status.sub1_class && status.sub1_class.set_class
+          %td= status.sub1_class.lv if status.sub1_class
+          %td.sep= status.sub2_class.set_class.name if status.sub2_class && status.sub2_class.set_class
+          %td= status.sub2_class.lv if status.sub2_class
+        - if @form_params["show_equip"] == "1"
+          %td.sep
+            - equips_text(status.equips)
         %td.sep= status.created_at.to_s(:jp_date)
         %td.sep= character_link(status.e_no)
 = paginate(@statuses)

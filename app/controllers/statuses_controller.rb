@@ -6,8 +6,8 @@ class StatusesController < ApplicationController
   def index
     placeholder_set
     param_set
-    @count	= Status.notnil_date().includes(:pc_name, :role).search(params[:q]).result.hit_count()
-    @search	= Status.notnil_date().includes(:pc_name, :role).page(params[:page]).search(params[:q])
+    @count	= Status.notnil_date().includes(:pc_name, :role, [main_class: :set_class], [sub1_class: :set_class], [sub2_class: :set_class], [equips: :artifact]).search(params[:q]).result.hit_count()
+    @search	= Status.notnil_date().includes(:pc_name, :role, [main_class: :set_class], [sub1_class: :set_class], [sub2_class: :set_class], [equips: :artifact]).page(params[:page]).search(params[:q])
     @search.sorts = "id asc" if @search.sorts.empty?
     @statuses	= @search.result.per(50)
   end
@@ -52,13 +52,99 @@ class StatusesController < ApplicationController
                                           {params_name: "line_2", value: 2},
                                           {params_name: "line_3", value: 3}])
 
+    params_to_form(params, @form_params, column_name: "main_class_lv", params_name: "main_lv_form", type: "number")
+    params_to_form(params, @form_params, column_name: "sub1_class_lv", params_name: "sub1_lv_form", type: "number")
+    params_to_form(params, @form_params, column_name: "sub2_class_lv", params_name: "sub2_lv_form", type: "number")
+
+    proper_name = ProperName.pluck(:name, :proper_id).inject(Hash.new(0)){|hash, a| hash[a[0]] = a[1] ; hash}
+    checkbox_params_set_query_any(params, @form_params, query_name: "main_class_class_id_eq_any",
+                             checkboxes: [{params_name: "main_fighter",         value: proper_name["ファイター"]},
+                                          {params_name: "main_bushido",         value: proper_name["ブシドー"]},
+                                          {params_name: "main_crusader",        value: proper_name["クルセイダー"]},
+                                          {params_name: "main_war_leader",      value: proper_name["ウォーリーダー"]},
+                                          {params_name: "main_shooter",         value: proper_name["シューター"]},
+                                          {params_name: "main_thief",           value: proper_name["シーフ"]},
+                                          {params_name: "main_ninja",           value: proper_name["ニンジャ"]},
+                                          {params_name: "main_acrobat",         value: proper_name["アクロバット"]},
+                                          {params_name: "main_mage",            value: proper_name["メイジ"]},
+                                          {params_name: "main_sorcery_night",   value: proper_name["ソーサルナイト"]},
+                                          {params_name: "main_enchanter",       value: proper_name["エンチャンター"]},
+                                          {params_name: "main_shaman",          value: proper_name["シャーマン"]},
+                                          {params_name: "main_priest",          value: proper_name["プリースト"]},
+                                          {params_name: "main_time_shifter",    value: proper_name["タイムシフター"]},
+                                          {params_name: "main_battle_bard",     value: proper_name["バトルバード"]},
+                                          {params_name: "main_dancer",          value: proper_name["ダンサー"]}])
+  
+    checkbox_params_set_query_any(params, @form_params, query_name: "sub1_class_class_id_or_sub2_class_class_id_eq_any",
+                             checkboxes: [{params_name: "sub_fighter",         value: proper_name["ファイター"]},
+                                          {params_name: "sub_bushido",         value: proper_name["ブシドー"]},
+                                          {params_name: "sub_crusader",        value: proper_name["クルセイダー"]},
+                                          {params_name: "sub_war_leader",      value: proper_name["ウォーリーダー"]},
+                                          {params_name: "sub_shooter",         value: proper_name["シューター"]},
+                                          {params_name: "sub_thief",           value: proper_name["シーフ"]},
+                                          {params_name: "sub_ninja",           value: proper_name["ニンジャ"]},
+                                          {params_name: "sub_acrobat",         value: proper_name["アクロバット"]},
+                                          {params_name: "sub_mage",            value: proper_name["メイジ"]},
+                                          {params_name: "sub_sorcery_night",   value: proper_name["ソーサルナイト"]},
+                                          {params_name: "sub_enchanter",       value: proper_name["エンチャンター"]},
+                                          {params_name: "sub_shaman",          value: proper_name["シャーマン"]},
+                                          {params_name: "sub_priest",          value: proper_name["プリースト"]},
+                                          {params_name: "sub_time_shifter",    value: proper_name["タイムシフター"]},
+                                          {params_name: "sub_battle_bard",     value: proper_name["バトルバード"]},
+                                          {params_name: "sub_dancer",          value: proper_name["ダンサー"]}])   
+
+    checkbox_params_set_query_any(params, @form_params, query_name: "sub1_class_class_id_eq_any",
+                             checkboxes: [{params_name: "sub1_fighter",         value: proper_name["ファイター"]},
+                                          {params_name: "sub1_bushido",         value: proper_name["ブシドー"]},
+                                          {params_name: "sub1_crusader",        value: proper_name["クルセイダー"]},
+                                          {params_name: "sub1_war_leader",      value: proper_name["ウォーリーダー"]},
+                                          {params_name: "sub1_shooter",         value: proper_name["シューター"]},
+                                          {params_name: "sub1_thief",           value: proper_name["シーフ"]},
+                                          {params_name: "sub1_ninja",           value: proper_name["ニンジャ"]},
+                                          {params_name: "sub1_acrobat",         value: proper_name["アクロバット"]},
+                                          {params_name: "sub1_mage",            value: proper_name["メイジ"]},
+                                          {params_name: "sub1_sorcery_night",   value: proper_name["ソーサルナイト"]},
+                                          {params_name: "sub1_enchanter",       value: proper_name["エンチャンター"]},
+                                          {params_name: "sub1_shaman",          value: proper_name["シャーマン"]},
+                                          {params_name: "sub1_priest",          value: proper_name["プリースト"]},
+                                          {params_name: "sub1_time_shifter",    value: proper_name["タイムシフター"]},
+                                          {params_name: "sub1_battle_bard",     value: proper_name["バトルバード"]},
+                                          {params_name: "sub1_dancer",          value: proper_name["ダンサー"]}])   
+ 
+    checkbox_params_set_query_any(params, @form_params, query_name: "sub2_class_class_id_eq_any",
+                             checkboxes: [{params_name: "sub2_fighter",         value: proper_name["ファイター"]},
+                                          {params_name: "sub2_bushido",         value: proper_name["ブシドー"]},
+                                          {params_name: "sub2_crusader",        value: proper_name["クルセイダー"]},
+                                          {params_name: "sub2_war_leader",      value: proper_name["ウォーリーダー"]},
+                                          {params_name: "sub2_shooter",         value: proper_name["シューター"]},
+                                          {params_name: "sub2_thief",           value: proper_name["シーフ"]},
+                                          {params_name: "sub2_ninja",           value: proper_name["ニンジャ"]},
+                                          {params_name: "sub2_acrobat",         value: proper_name["アクロバット"]},
+                                          {params_name: "sub2_mage",            value: proper_name["メイジ"]},
+                                          {params_name: "sub2_sorcery_night",   value: proper_name["ソーサルナイト"]},
+                                          {params_name: "sub2_enchanter",       value: proper_name["エンチャンター"]},
+                                          {params_name: "sub2_shaman",          value: proper_name["シャーマン"]},
+                                          {params_name: "sub2_priest",          value: proper_name["プリースト"]},
+                                          {params_name: "sub2_time_shifter",    value: proper_name["タイムシフター"]},
+                                          {params_name: "sub2_battle_bard",     value: proper_name["バトルバード"]},
+                                          {params_name: "sub2_dancer",          value: proper_name["ダンサー"]}])   
+
+    params_to_form(params, @form_params, column_name: "equips_artifact_name", params_name: "artifact_form", type: "text")
+
+
     params[:q]["created_at_gteq"] = params["created_at_gteq_form"] && params["created_at_gteq_form"] != "" ? params["created_at_gteq_form"] + " 00:00:00" : nil;
     params[:q]["created_at_lteq"] = params["created_at_lteq_form"] && params["created_at_lteq_form"] != "" ? params["created_at_lteq_form"] + " 23:59:00" : nil;
 
     @form_params["created_at_gteq_form"] = params["created_at_gteq_form"]
     @form_params["created_at_lteq_form"] = params["created_at_lteq_form"]
 
+    toggle_params_to_variable(params, @form_params, params_name: "show_status", first_opened: true)
     toggle_params_to_variable(params, @form_params, params_name: "show_used")
+    toggle_params_to_variable(params, @form_params, params_name: "show_class")
+    toggle_params_to_variable(params, @form_params, params_name: "show_sub_class")
+    toggle_params_to_variable(params, @form_params, params_name: "show_sub_detail")
+    toggle_params_to_variable(params, @form_params, params_name: "show_equip")
+    @form_params["base_first"]    = (!params["is_form"]) ? "1" : "0"
   end
   # GET /statuses/1
   #def show
