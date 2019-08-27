@@ -6,8 +6,8 @@ class SetClassesController < ApplicationController
   def index
     placeholder_set
     param_set
-    @count	= SetClass.notnil_date().includes(:pc_name, :set_class).search(params[:q]).result.hit_count()
-    @search	= SetClass.notnil_date().includes(:pc_name, :set_class).page(params[:page]).search(params[:q])
+    @count	= SetClass.notnil_date().includes(:pc_name, :set_class).where(class_id: 1..Float::INFINITY).search(params[:q]).result.hit_count()
+    @search	= SetClass.notnil_date().includes(:pc_name, :set_class).where(class_id: 1..Float::INFINITY).page(params[:page]).search(params[:q])
     @search.sorts = "id asc" if @search.sorts.empty?
     @set_classes	= @search.result.per(50)
   end
@@ -28,6 +28,8 @@ class SetClassesController < ApplicationController
     params_to_form(params, @form_params, column_name: "class_id", params_name: "class_id_form", type: "number")
     params_to_form(params, @form_params, column_name: "class_num", params_name: "class_num_form", type: "number")
     params_to_form(params, @form_params, column_name: "lv", params_name: "lv_form", type: "number")
+
+    params_to_form(params, @form_params, column_name: "class_name", params_name: "class_form", type: "text")
 
     proper_name = ProperName.pluck(:name, :proper_id).inject(Hash.new(0)){|hash, a| hash[a[0]] = a[1] ; hash}
     checkbox_params_set_query_any(params, @form_params, query_name: "class_id_eq_any",
@@ -58,8 +60,6 @@ class SetClassesController < ApplicationController
 
     @form_params["created_at_gteq_form"] = params["created_at_gteq_form"]
     @form_params["created_at_lteq_form"] = params["created_at_lteq_form"]
-
-    params_to_form(params, @form_params, column_name: "class_name", params_name: "class_form", type: "text")
   end
   # GET /set_classes/1
   #def show

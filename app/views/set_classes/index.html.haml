@@ -27,7 +27,7 @@
       %tr
       %tr
         %td.indent
-        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "Eno", params_name: "e_no_form", placeholder: "Number")
+        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "No", params_name: "e_no_form", placeholder: "Number")
         - td_form(f, @form_params, @placeholder, class_name: "formText", label: "キャラクター名", params_name: "pc_name_form", placeholder: "Name")
       %tr
         %td.indent
@@ -75,7 +75,7 @@
 %table.table.table-striped.table-bordered.table-hover
   %thead
     %tr
-      %th= sort_link(@search, :e_no,"キャラクター(Eno)", default_order: :desc)
+      %th= sort_link(@search, :e_no,"キャラクター(No)", default_order: :desc)
       %th= sort_link(@search, :class_id, "クラス名", default_order: :desc)
       %th= sort_link(@search, :class_num, "種類", default_order: :desc)
       %th= sort_link(@search, :lv, "Lv", default_order: :desc)
