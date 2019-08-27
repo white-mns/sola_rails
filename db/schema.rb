@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_27_010904) do
+ActiveRecord::Schema.define(version: 2019_08_27_022112) do
+
+  create_table "equips", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.integer "e_no"
+    t.integer "artifact_id"
+    t.integer "equip_num"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["artifact_id"], name: "index_equips_on_artifact_id"
+    t.index ["created_at"], name: "index_equips_on_created_at"
+    t.index ["e_no", "created_at"], name: "createdat_and_eno"
+    t.index ["equip_num"], name: "index_equips_on_equip_num"
+  end
 
   create_table "names", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
     t.integer "e_no"
@@ -39,6 +51,7 @@ ActiveRecord::Schema.define(version: 2019_08_27_010904) do
     t.datetime "updated_at", null: false
     t.index ["class_id"], name: "index_set_classes_on_class_id"
     t.index ["class_num"], name: "index_set_classes_on_class_num"
+    t.index ["created_at"], name: "index_set_classes_on_created_at"
     t.index ["e_no", "created_at"], name: "createdat_and_eno"
     t.index ["lv"], name: "index_set_classes_on_lv"
   end

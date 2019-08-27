@@ -5,6 +5,6 @@ class ApplicationController < ActionController::Base
         @placeholder["Text"]   = "例）武器/\"防具\""
         @placeholder["Name"]   = "例）太郎/\"次郎\""
         @placeholder["Skill"]  = "例）スラッシュ/\"ラッシュ\""
-        @placeholder["Item"]   = "例）武器/\"防具\""
+        @placeholder["Artifact"]   = "例）賢者の石/演習用核爆弾"
     end
 end

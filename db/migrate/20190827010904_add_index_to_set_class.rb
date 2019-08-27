@@ -4,5 +4,6 @@ class AddIndexToSetClass < ActiveRecord::Migration[5.2]
     add_index :set_classes, :class_id
     add_index :set_classes, :class_num
     add_index :set_classes, :lv
+    add_index :set_classes, :created_at
   end
 end
