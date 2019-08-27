@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :set_classes
   resources :statuses
   resources :names
   resources :proper_names

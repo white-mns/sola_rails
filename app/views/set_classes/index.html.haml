@@ -1,0 +1,94 @@
+- @page_title = "設定クラス一覧"
+%h1= @page_title
+
+.card.desc
+  .card-header
+    - act_icon(true)
+    検索仕様
+    - act_desc(true)
+  .card-body
+    = render "layouts/base_desc"
+    %p
+      %span.example_select.example_toggle.pointer
+        - help_icon
+        入力例
+        - act_desc(false)
+    #example.closed
+      = render "layouts/input_desc"
+= search_form_for @search do |f|
+  %table.search_toggle.table.table-striped.table-bordered.table-hover
+    %tbody.pointer
+      %tr
+        %td{colspan: "5"}
+          - act_icon(true)
+          絞り込み検索
+          - act_desc(true)
+    %tbody
+      %tr
+      %tr
+        %td.indent
+        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "Eno", params_name: "e_no_form", placeholder: "Number")
+        - td_form(f, @form_params, @placeholder, class_name: "formText", label: "キャラクター名", params_name: "pc_name_form", placeholder: "Name")
+      %tr
+        %td.indent
+        - td_form(f, @form_params, @placeholder, params_name: "equip_form",label: "クラス", colspan: 3, label_td_class_name: "indent",
+                    checkboxes: [{label: "ファイター",     params_name: "class_fighter",        class_name: "after_space"},
+                                 {label: "ブシドー",       params_name: "class_bushido",        class_name: "after_space", br: true},
+                                 {label: "クルセイダー",   params_name: "class_crusader",       class_name: "after_space"},
+                                 {label: "ウォーリーダー", params_name: "class_war_leader",     class_name: "after_space", br: true},
+                                 {label: "シューター",     params_name: "class_shooter",        class_name: "after_space"},
+                                 {label: "シーフ",         params_name: "class_thief",          class_name: "after_space", br: true},
+                                 {label: "ニンジャ",       params_name: "class_ninja",          class_name: "after_space"},
+                                 {label: "アクロバット",   params_name: "class_acrobat",        class_name: "after_space", br: true},
+                                 {label: "メイジ",         params_name: "class_mage",           class_name: "after_space"},
+                                 {label: "ソーサルナイト", params_name: "class_sorcery_night",  class_name: "after_space", br: true},
+                                 {label: "エンチャンター", params_name: "class_enchanter",      class_name: "after_space"},
+                                 {label: "シャーマン",     params_name: "class_shaman",         class_name: "after_space", br: true},
+                                 {label: "プリースト",     params_name: "class_priest",         class_name: "after_space"},
+                                 {label: "タイムシフター", params_name: "class_time_shifter",   class_name: "after_space", br: true},
+                                 {label: "バトルバード",   params_name: "class_battle_bard",    class_name: "after_space"},
+                                 {label: "ダンサー",       params_name: "class_dancer",         class_name: "after_space"}])
+      %tr
+        %td.indent
+        - td_form(f, @form_params, @placeholder, params_name: "class_num_form",label: "メイン・サブ", colspan: 3, label_td_class_name: "indent",
+                    checkboxes: [{label: "メイン", params_name: "class_main", class_name: "after_space"},
+                                 {label: "サブ", params_name: "class_sub"}])
+      %tr
+        %td.indent
+        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "クラスLv", params_name: "lv_form", colspan: 3)
+      %tr.sep
+        %td.indent
+        - td_date_between_form(f, @form_params, @placeholder, class_name: nil,  label: "取得日", params_name: "created_at", data_target: "date", placeholder: nil, colspan: 3)
+      %tr.sep
+        %td.indent
+        %td.indent= hidden_field_tag :is_form, 1
+        %td{colspan: "3"}
+          - search_submit_button
+
+
+= paginate(@set_classes)
+%br
+ヒット数：#{ @count }件
+%br
+%br
+
+%table.table.table-striped.table-bordered.table-hover
+  %thead
+    %tr
+      %th= sort_link(@search, :e_no,"キャラクター(Eno)", default_order: :desc)
+      %th= sort_link(@search, :class_id, "クラス名", default_order: :desc)
+      %th= sort_link(@search, :class_num, "種類", default_order: :desc)
+      %th= sort_link(@search, :lv, "Lv", default_order: :desc)
+      %th.sep{colspan: "2"} 結果リンク
+  %tbody
+    - @set_classes.each do |set_class|
+      %tr
+        %td= pc_name_text(set_class.e_no, set_class.pc_name)
+        %td= set_class.set_class.name if set_class.set_class
+        %td
+          = "メイン" if set_class.class_num == 1
+          = "サブ1" if set_class.class_num == 2
+          = "サブ2" if set_class.class_num == 3
+        %td= set_class.lv
+        %td.sep= character_link(set_class.e_no)
+= paginate(@set_classes)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_26_234302) do
+ActiveRecord::Schema.define(version: 2019_08_27_010904) do
 
   create_table "names", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
     t.integer "e_no"
@@ -28,6 +28,19 @@ ActiveRecord::Schema.define(version: 2019_08_26_234302) do
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_proper_names_on_name"
     t.index ["proper_id"], name: "index_proper_names_on_proper_id"
+  end
+
+  create_table "set_classes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.integer "e_no"
+    t.integer "class_id"
+    t.integer "class_num"
+    t.integer "lv"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["class_id"], name: "index_set_classes_on_class_id"
+    t.index ["class_num"], name: "index_set_classes_on_class_num"
+    t.index ["e_no", "created_at"], name: "createdat_and_eno"
+    t.index ["lv"], name: "index_set_classes_on_lv"
   end
 
   create_table "statuses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
