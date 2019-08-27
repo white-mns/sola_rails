@@ -173,19 +173,14 @@ module ApplicationHelper
         end
     end
 
-
-    def all_assembly_text(assembly)
-        if !assembly then
-            return
+    def range_text(range)
+        if range == -1 then
+            "-"
+        elsif range == -2 then
+            "?"
+        else
+            range
         end
-
-        assembly_text = ""
-
-        assembly.each do |parts|
-          assembly_text += parts.orig_name_name.name + "、" if parts.orig_name_name
-        end
-
-        assembly_text.chop()
     end
 
 end

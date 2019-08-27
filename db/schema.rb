@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_27_022112) do
+ActiveRecord::Schema.define(version: 2019_08_27_074442) do
 
   create_table "equips", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
     t.integer "e_no"
@@ -54,6 +54,26 @@ ActiveRecord::Schema.define(version: 2019_08_27_022112) do
     t.index ["created_at"], name: "index_set_classes_on_created_at"
     t.index ["e_no", "created_at"], name: "createdat_and_eno"
     t.index ["lv"], name: "index_set_classes_on_lv"
+  end
+
+  create_table "skill_data", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.integer "skill_id"
+    t.string "name"
+    t.integer "range"
+    t.integer "cost_id"
+    t.integer "sp"
+    t.integer "timing_id"
+    t.string "text"
+    t.integer "is_artifact"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cost_id"], name: "index_skill_data_on_cost_id"
+    t.index ["is_artifact"], name: "index_skill_data_on_is_artifact"
+    t.index ["name"], name: "index_skill_data_on_name"
+    t.index ["range"], name: "index_skill_data_on_range"
+    t.index ["skill_id"], name: "index_skill_data_on_skill_id"
+    t.index ["sp"], name: "index_skill_data_on_sp"
+    t.index ["timing_id"], name: "index_skill_data_on_timing_id"
   end
 
   create_table "statuses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
