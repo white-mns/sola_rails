@@ -19,6 +19,7 @@ class SkillsController < ApplicationController
 
     params_clean(params)
     if !params["is_form"] then
+        params["created_at_gteq_form"] ||= @latest_created.to_date.to_s
         params["created_at_lteq_form"] ||= @latest_created.to_date.to_s
     end
 
