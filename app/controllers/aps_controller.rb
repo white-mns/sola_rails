@@ -36,7 +36,7 @@ class ApsController < ApplicationController
                              checkboxes: [{params_name: "battle_main",  value: proper_name["メイン"]},
                                           {params_name: "battle_side",  value: proper_name["サイド"]},
                                           {params_name: "battle_quest", value: proper_name["クエスト"]},
-                                          {params_name: "battle_pvp",   value: proper_name["模擬戦"]}])
+                                          {params_name: "battle_pvp",   value: proper_name["摸擬戦"]}])
 
     checkbox_params_set_query_any(params, @form_params, query_name: "difficulty_id_eq_any",
                              checkboxes: [{params_name: "difficulty_1", value: proper_name["ふつう"]},
