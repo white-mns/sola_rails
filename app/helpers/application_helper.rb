@@ -183,4 +183,16 @@ module ApplicationHelper
         end
     end
 
+    def battle_result_text(ap)
+        if    ap.battle_result == -99  then return "なし"
+        elsif ap.battle_result == 1  then return "勝利"
+        elsif ap.battle_result == 0  then return "引分"
+        elsif ap.battle_result == -1 then return "敗北"
+        elsif ap.battle_result == 2  then return "左側"
+        elsif ap.battle_result == -2  then return "右側"
+        else
+            return "？"
+        end
+    end
+
 end

@@ -10,7 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_27_081603) do
+ActiveRecord::Schema.define(version: 2019_08_28_003448) do
+
+  create_table "aps", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.integer "ap_no"
+    t.integer "battle_type_id"
+    t.integer "party_num"
+    t.integer "quest_id"
+    t.integer "difficulty_id"
+    t.integer "battle_result"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ap_no"], name: "index_aps_on_ap_no", unique: true
+    t.index ["battle_result"], name: "index_aps_on_battle_result"
+    t.index ["battle_type_id"], name: "index_aps_on_battle_type_id"
+    t.index ["created_at", "ap_no"], name: "createdat_apno"
+    t.index ["created_at"], name: "index_aps_on_created_at"
+    t.index ["difficulty_id"], name: "index_aps_on_difficulty_id"
+    t.index ["party_num"], name: "index_aps_on_party_num"
+    t.index ["quest_id"], name: "index_aps_on_quest_id"
+  end
 
   create_table "equips", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
     t.integer "e_no"

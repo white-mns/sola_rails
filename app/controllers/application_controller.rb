@@ -9,5 +9,6 @@ class ApplicationController < ActionController::Base
         @placeholder["Cost"]  = "例）SP30/SP50+"
         @placeholder["Effect"]  = "例）ATK -MATK 増"
         @placeholder["Timing"]  = "例）戦闘開始時/通常時"
+        @placeholder["Quest"]  = "例）第一歩/ピクニック"
     end
 end

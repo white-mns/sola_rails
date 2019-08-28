@@ -5,5 +5,5 @@
 # db      => "2014-10-01 00:00:00"
 
 # カスタムフォーマットを定義
-Time::DATE_FORMATS[:jp_all] = "%Y/%m/%d %H:%M"
-Time::DATE_FORMATS[:jp_date] = "%Y/%m/%d"
+Time::DATE_FORMATS[:jp_all] = "%Y-%m-%d %H:%M"
+Time::DATE_FORMATS[:jp_date] = "%Y-%m-%d"
