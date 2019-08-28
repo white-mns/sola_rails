@@ -37,7 +37,7 @@ class NuclearsController < ApplicationController
     params_to_form(params, @form_params, column_name: "ap_no", params_name: "ap_no_form", type: "number")
     params_to_form(params, @form_params, column_name: "e_no", params_name: "e_no_form", type: "number")
     params_to_form(params, @form_params, column_name: "skill_id", params_name: "skill_id_form", type: "number")
-    params_to_form(params, @form_params, column_name: "user_name", params_name: "user_name_form", type: "number")
+    params_to_form(params, @form_params, column_name: "user_name", params_name: "user_name_form", type: "text")
     params_to_form(params, @form_params, column_name: "turn", params_name: "turn_form", type: "number")
     params_to_form(params, @form_params, column_name: "max_damage", params_name: "max_damage_form", type: "number")
     params_to_form(params, @form_params, column_name: "total_damage", params_name: "total_damage_form", type: "number")
