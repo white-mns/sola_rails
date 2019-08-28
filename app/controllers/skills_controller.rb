@@ -28,7 +28,7 @@ class SkillsController < ApplicationController
     params_to_form(params, @form_params, column_name: "battle_type", params_name: "battle_type_form", type: "number")
     params_to_form(params, @form_params, column_name: "set_no", params_name: "set_no_form", type: "number")
     params_to_form(params, @form_params, column_name: "skill_id", params_name: "skill_id_form", type: "number")
-    params_to_form(params, @form_params, column_name: "name", params_name: "name_form", type: "number")
+    params_to_form(params, @form_params, column_name: "name", params_name: "name_form", type: "text")
 
     params_to_form(params, @form_params, column_name: "skill_sp", params_name: "sp_form", type: "number")
     params_to_form(params, @form_params, column_name: "skill_timing_id", params_name: "timing_id_form", type: "number")
