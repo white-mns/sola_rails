@@ -27,7 +27,7 @@
       %tr
       %tr
         %td.indent
-        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "参加ENo", params_name: "party_members_e_no_form", placeholder: "Number")
+        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "参加No", params_name: "party_members_e_no_form", placeholder: "Number")
         - td_form(f, @form_params, @placeholder, class_name: "formText", label: "参加キャラクター名", params_name: "party_members_name_form", placeholder: "Name")
       %tr.sep
         %td.indent
@@ -51,21 +51,20 @@
     - #==========================================================================================================================
     - tbody_toggle(@form_params, params_name: "show_num",
                     label: {open: "主導、呼出、挑まれで絞り込む", close: "主導、呼出、挑まれでの絞り込みを隠す"},
-                    act_desc: "主導ENo、主導キャラクター名、呼出ENo、呼出キャラクター名、挑まれENo、挑まれキャラクター名、", base_first: false)
+                    act_desc: "主導No、主導キャラクター名、呼出No、呼出キャラクター名、挑まれNo、挑まれキャラクター名、", base_first: false)
     %tbody.closed
       %tr
         %td.indent
-        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "主導ENo", params_name: "leader_e_no_form", placeholder: "Number")
+        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "主導No", params_name: "leader_e_no_form", placeholder: "Number")
         - td_form(f, @form_params, @placeholder, class_name: "formText", label: "主導キャラクター名", params_name: "leader_name_form", placeholder: "Name")
       %tr
         %td.indent
-        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "同行ENo", params_name: "fellow_members_e_no_form", placeholder: "Number")
+        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "同行No", params_name: "fellow_members_e_no_form", placeholder: "Number")
         - td_form(f, @form_params, @placeholder, class_name: "formText", label: "同行キャラクター名", params_name: "fellow_members_name_form", placeholder: "Name")
       %tr
         %td.indent
-        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "同行ENo", params_name: "rival_members_e_no_form", placeholder: "Number")
-        - td_form(f, @form_params, @placeholder, class_name: "formText", label: "同行キャラクター名", params_name: "rival_members_name_form", placeholder: "Name")
-
+        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "挑まれNo", params_name: "rival_members_e_no_form", placeholder: "Number")
+        - td_form(f, @form_params, @placeholder, class_name: "formText", label: "挑まれキャラクター名", params_name: "rival_members_name_form", placeholder: "Name")
 
     - #==========================================================================================================================
     - tbody_toggle(@form_params, params_name: "show_ap_no",
@@ -125,7 +124,7 @@
     %tr
       %th= sort_link(@search, :ap_no, "結果No", default_order: :desc)
       %th.sep= sort_link(@search, :battle_type_id, "種類", default_order: :desc)
-      %th= sort_link(@search, :party_members_e_no,'参戦キャラクター(ENo)', default_order: :desc)
+      %th.sep= sort_link(@search, :party_members_e_no,'参戦キャラクター(No)', default_order: :desc)
       %th.sep= sort_link(@search, :quest_id, "クエスト名", default_order: :desc)
       %th= sort_link(@search, :difficulty_id, "難易度", default_order: :desc)
       - if @form_params["show_num"] == "1"
