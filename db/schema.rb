@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_28_013841) do
+ActiveRecord::Schema.define(version: 2019_08_28_041221) do
 
   create_table "aps", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
     t.integer "ap_no"
@@ -50,6 +50,25 @@ ActiveRecord::Schema.define(version: 2019_08_28_013841) do
     t.datetime "updated_at", null: false
     t.index ["e_no"], name: "index_names_on_e_no"
     t.index ["name"], name: "index_names_on_name"
+  end
+
+  create_table "nuclears", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.integer "ap_no"
+    t.integer "e_no"
+    t.integer "skill_id"
+    t.string "user_name"
+    t.integer "turn"
+    t.integer "max_damage"
+    t.integer "total_damage"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ap_no"], name: "index_nuclears_on_ap_no"
+    t.index ["e_no"], name: "index_nuclears_on_e_no"
+    t.index ["max_damage"], name: "index_nuclears_on_max_damage"
+    t.index ["skill_id"], name: "index_nuclears_on_skill_id"
+    t.index ["total_damage"], name: "index_nuclears_on_total_damage"
+    t.index ["turn"], name: "index_nuclears_on_turn"
+    t.index ["user_name"], name: "index_nuclears_on_user_name"
   end
 
   create_table "parties", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
@@ -115,6 +134,9 @@ ActiveRecord::Schema.define(version: 2019_08_28_013841) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["battle_type"], name: "index_skills_on_battle_type"
+    t.index ["e_no", "created_at", "set_no"], name: "createdat_and_eno"
+    t.index ["skill_id"], name: "index_skills_on_skill_id"
   end
 
   create_table "statuses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
