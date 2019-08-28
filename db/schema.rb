@@ -10,7 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_27_081603) do
+ActiveRecord::Schema.define(version: 2019_08_28_041221) do
+
+  create_table "aps", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.integer "ap_no"
+    t.integer "battle_type_id"
+    t.integer "party_num"
+    t.integer "quest_id"
+    t.integer "difficulty_id"
+    t.integer "battle_result"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ap_no"], name: "index_aps_on_ap_no", unique: true
+    t.index ["battle_result"], name: "index_aps_on_battle_result"
+    t.index ["battle_type_id"], name: "index_aps_on_battle_type_id"
+    t.index ["created_at", "ap_no"], name: "createdat_apno"
+    t.index ["created_at"], name: "index_aps_on_created_at"
+    t.index ["difficulty_id"], name: "index_aps_on_difficulty_id"
+    t.index ["party_num"], name: "index_aps_on_party_num"
+    t.index ["quest_id"], name: "index_aps_on_quest_id"
+  end
 
   create_table "equips", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
     t.integer "e_no"
@@ -31,6 +50,37 @@ ActiveRecord::Schema.define(version: 2019_08_27_081603) do
     t.datetime "updated_at", null: false
     t.index ["e_no"], name: "index_names_on_e_no"
     t.index ["name"], name: "index_names_on_name"
+  end
+
+  create_table "nuclears", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.integer "ap_no"
+    t.integer "e_no"
+    t.integer "skill_id"
+    t.string "user_name"
+    t.integer "turn"
+    t.integer "max_damage"
+    t.integer "total_damage"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ap_no"], name: "index_nuclears_on_ap_no"
+    t.index ["e_no"], name: "index_nuclears_on_e_no"
+    t.index ["max_damage"], name: "index_nuclears_on_max_damage"
+    t.index ["skill_id"], name: "index_nuclears_on_skill_id"
+    t.index ["total_damage"], name: "index_nuclears_on_total_damage"
+    t.index ["turn"], name: "index_nuclears_on_turn"
+    t.index ["user_name"], name: "index_nuclears_on_user_name"
+  end
+
+  create_table "parties", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.integer "ap_no"
+    t.integer "e_no"
+    t.integer "party_side"
+    t.integer "party_order"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ap_no", "e_no"], name: "apno_eno"
+    t.index ["party_order"], name: "index_parties_on_party_order"
+    t.index ["party_side"], name: "index_parties_on_party_side"
   end
 
   create_table "proper_names", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
@@ -84,6 +134,9 @@ ActiveRecord::Schema.define(version: 2019_08_27_081603) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["battle_type"], name: "index_skills_on_battle_type"
+    t.index ["e_no", "created_at", "set_no"], name: "createdat_and_eno"
+    t.index ["skill_id"], name: "index_skills_on_skill_id"
   end
 
   create_table "statuses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|

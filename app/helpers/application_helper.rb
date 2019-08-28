@@ -183,4 +183,49 @@ module ApplicationHelper
         end
     end
 
+    def battle_result_text(ap)
+        if    ap.battle_result == -99  then return "なし"
+        elsif ap.battle_result == 1  then return "勝利"
+        elsif ap.battle_result == 0  then return "引分"
+        elsif ap.battle_result == -1 then return "敗北"
+        elsif ap.battle_result == 2  then return "左側"
+        elsif ap.battle_result == -2  then return "右側"
+        else
+            return "？"
+        end
+    end
+
+    def party_members(members)
+        if !members then
+            return
+        end
+
+        is_pvp = false
+        members.each do |member|
+            if member.party_side == 1 then
+                is_pvp = true
+                next
+            end
+
+            haml_concat member.pc_name.name if member.pc_name
+            haml_concat "(" + sprintf("%d", member.e_no) + ")"
+            haml_tag :br
+        end
+
+        if is_pvp then
+            haml_tag :br
+            haml_concat "VS"
+            haml_tag :br
+            haml_tag :br
+
+            members.each do |member|
+                if member.party_side == 0 then
+                    next
+                end
+                haml_concat member.pc_name.name if member.pc_name
+                haml_concat "(" + sprintf("%d", member.e_no) + ")"
+                haml_tag :br
+            end
+        end
+    end
 end

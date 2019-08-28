@@ -57,7 +57,7 @@
     %tbody.closed
       %tr
         %td.indent
-        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "射程", params_name: "range_form")
+        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "射程", params_name: "range_form", placeholder: "Number")
         - td_form(f, @form_params, @placeholder, params_name: "range_other_form", colspan: 3, label_td_class_name: "indent",
                     checkboxes: [{label: "射程 -",           params_name: "range_no", class_name: "after_space"},
                                  {label: "射程 ?", params_name: "range_random"}])
