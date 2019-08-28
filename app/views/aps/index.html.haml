@@ -27,7 +27,11 @@
       %tr
       %tr
         %td.indent
-        - td_form(f, @form_params, @placeholder, class_name: "formText",  label: "クエスト名", params_name: "quest_form", placeholder: "Quest")
+        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "参加ENo", params_name: "party_members_e_no_form", placeholder: "Number")
+        - td_form(f, @form_params, @placeholder, class_name: "formText", label: "参加キャラクター名", params_name: "party_members_name_form", placeholder: "Name")
+      %tr.sep
+        %td.indent
+        - td_form(f, @form_params, @placeholder, class_name: "formText",  label: "クエスト名", params_name: "quest_form", placeholder: "Quest", colspan: 3)
       %tr
         %td.indent
         - td_form(f, @form_params, @placeholder, params_name: "battle_type_form",label: "種類", colspan: 3, label_td_class_name: "indent",
@@ -43,6 +47,25 @@
                        {label: "やばい", params_name: "difficulty_3", class_name: "after_space"},
                        {label: "えぐい", params_name: "difficulty_4", class_name: "after_space"},
                        {label: "じごく", params_name: "difficulty_5"}])
+
+    - #==========================================================================================================================
+    - tbody_toggle(@form_params, params_name: "show_num",
+                    label: {open: "主導、呼出、挑まれで絞り込む", close: "主導、呼出、挑まれでの絞り込みを隠す"},
+                    act_desc: "主導ENo、主導キャラクター名、呼出ENo、呼出キャラクター名、挑まれENo、挑まれキャラクター名、", base_first: false)
+    %tbody.closed
+      %tr
+        %td.indent
+        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "主導ENo", params_name: "leader_e_no_form", placeholder: "Number")
+        - td_form(f, @form_params, @placeholder, class_name: "formText", label: "主導キャラクター名", params_name: "leader_name_form", placeholder: "Name")
+      %tr
+        %td.indent
+        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "同行ENo", params_name: "fellow_members_e_no_form", placeholder: "Number")
+        - td_form(f, @form_params, @placeholder, class_name: "formText", label: "同行キャラクター名", params_name: "fellow_members_name_form", placeholder: "Name")
+      %tr
+        %td.indent
+        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "同行ENo", params_name: "rival_members_e_no_form", placeholder: "Number")
+        - td_form(f, @form_params, @placeholder, class_name: "formText", label: "同行キャラクター名", params_name: "rival_members_name_form", placeholder: "Name")
+
 
     - #==========================================================================================================================
     - tbody_toggle(@form_params, params_name: "show_ap_no",
@@ -67,7 +90,7 @@
     %tbody.closed
       %tr
         %td.indent
-        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "パーティ人数", params_name: "party_num_form")
+        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "パーティ人数", params_name: "party_num_form", colspan: 3)
 
     - #==========================================================================================================================
     - tbody_toggle(@form_params, params_name: "show_battle_result",
@@ -102,7 +125,8 @@
     %tr
       %th= sort_link(@search, :ap_no, "結果No", default_order: :desc)
       %th.sep= sort_link(@search, :battle_type_id, "種類", default_order: :desc)
-      %th= sort_link(@search, :quest_id, "クエスト名", default_order: :desc)
+      %th= sort_link(@search, :party_members_e_no,'参戦キャラクター(ENo)', default_order: :desc)
+      %th.sep= sort_link(@search, :quest_id, "クエスト名", default_order: :desc)
       %th= sort_link(@search, :difficulty_id, "難易度", default_order: :desc)
       - if @form_params["show_num"] == "1"
         %th.sep= sort_link(@search, :party_num, "PT人数", default_order: :desc)
@@ -115,7 +139,9 @@
       %tr
         %td= ap.ap_no
         %td.sep= ap.battle_type.name if ap.battle_type
-        %td= ap.quest.name if ap.quest
+        %td.sep
+          - party_members(ap.party_members) if ap.party_members
+        %td.sep= ap.quest.name if ap.quest
         %td= ap.difficulty.name if ap.difficulty
         - if @form_params["show_num"] == "1"
           %td.sep= ap.party_num

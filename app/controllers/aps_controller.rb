@@ -6,8 +6,8 @@ class ApsController < ApplicationController
   def index
     placeholder_set
     param_set
-    @count	= Ap.notnil_date().includes(:battle_type, :quest, :difficulty).search(params[:q]).result.hit_count()
-    @search	= Ap.notnil_date().includes(:battle_type, :quest, :difficulty).page(params[:page]).search(params[:q])
+    @count	= Ap.notnil_date().includes(:battle_type, :quest, :difficulty, [party_members: :pc_name]).where_members(@params_members).where_leader(@params_leader).where_fellows(@params_fellows).where_rivals(@params_rivals).search(params[:q]).result.hit_count()
+    @search	= Ap.notnil_date().includes(:battle_type, :quest, :difficulty, [party_members: :pc_name]).where_members(@params_members).where_leader(@params_leader).where_fellows(@params_fellows).where_rivals(@params_rivals).page(params[:page]).search(params[:q])
     @search.sorts = "ap_no desc" if @search.sorts.empty?
     @aps	= @search.result.per(50)
   end
@@ -18,6 +18,17 @@ class ApsController < ApplicationController
     @latest_created = UploadedCheck.maximum("created_at")
 
     params_clean(params)
+
+    @params_members = params.dup
+    @params_leader  = params.dup
+    @params_fellows = params.dup
+    @params_rivals = params.dup
+    @params_leader[:q]["party_order_eq"] = 0
+    @params_leader[:q]["party_side_eq"] = 0
+    @params_fellows[:q]["party_order_not_eq"] = 0
+    @params_fellows[:q]["party_side_eq"] = 0
+    @params_rivals[:q]["party_side_eq"] = 1
+
     if !params["is_form"] then
         params["created_at_lteq_form"] ||= @latest_created.to_date.to_s
     end
@@ -30,6 +41,16 @@ class ApsController < ApplicationController
     params_to_form(params, @form_params, column_name: "battle_result", params_name: "battle_result_form", type: "number")
 
     params_to_form(params, @form_params, column_name: "quest_name", params_name: "quest_form", type: "text")
+
+    params_to_form(@params_members, @form_params, column_name: "e_no", params_name: "party_members_e_no_form", type: "number")
+    params_to_form(@params_members, @form_params, column_name: "pc_name_name", params_name: "party_members_name_form", type: "text")
+    params_to_form(@params_leader, @form_params, column_name: "e_no", params_name: "leader_e_no_form", type: "number")
+    params_to_form(@params_leader, @form_params, column_name: "pc_name_name", params_name: "leader_name_form", type: "text")
+    params_to_form(@params_fellows, @form_params, column_name: "e_no", params_name: "fellow_members_e_no_form", type: "number")
+    params_to_form(@params_fellows, @form_params, column_name: "pc_name_name", params_name: "fellow_members_name_form", type: "text")
+    params_to_form(@params_rivals, @form_params, column_name: "e_no", params_name: "rival_members_e_no_form", type: "number")
+    params_to_form(@params_rivals, @form_params, column_name: "pc_name_name", params_name: "rival_members_name_form", type: "text")
+    
 
     proper_name = ProperName.pluck(:name, :proper_id).inject(Hash.new(0)){|hash, a| hash[a[0]] = a[1] ; hash}
     checkbox_params_set_query_any(params, @form_params, query_name: "battle_type_id_eq_any",
@@ -62,6 +83,7 @@ class ApsController < ApplicationController
     toggle_params_to_variable(params, @form_params, params_name: "show_ap_no")
     toggle_params_to_variable(params, @form_params, params_name: "show_date", first_opened: true)
     toggle_params_to_variable(params, @form_params, params_name: "show_battle_result", first_opened: true)
+    toggle_params_to_variable(params, @form_params, params_name: "show_leader_fellow")
     @form_params["base_first"]    = (!params["is_form"]) ? "1" : "0"
   end
   # GET /aps/1
