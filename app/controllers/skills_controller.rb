@@ -35,6 +35,7 @@ class SkillsController < ApplicationController
     params_to_form(params, @form_params, column_name: "skill_text", params_name: "text_form", type: "text")
     params_to_form(params, @form_params, column_name: "skill_is_artifact", params_name: "is_artifact_form", type: "number")
 
+    params_to_form(params, @form_params, column_name: "skill_name", params_name: "skill_form", type: "text")
     params_to_form(params, @form_params, column_name: "skill_timing_name", params_name: "timing_form", type: "text")
 
     params_to_form(params, @form_params, column_name: "status_str", params_name: "str_form", type: "number")
