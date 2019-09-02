@@ -28,10 +28,24 @@
       %tr.sep
         %td.indent
         - td_form(f, @form_params, @placeholder, class_name: "formText",  label: "スキル名", params_name: "skill_form", placeholder: "Skill", colspan: 3)
+      %tr.sep
+        %td.indent
+        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "射程", params_name: "range_form", placeholder: "Number")
+        - td_form(f, @form_params, @placeholder, params_name: "range_other_form", colspan: 3, label_td_class_name: "indent",
+                    checkboxes: [{label: "射程 -",           params_name: "range_no", class_name: "after_space"},
+                                 {label: "射程 ?", params_name: "range_random"}])
       %tr
         %td.indent
-        - td_form(f, @form_params, @placeholder, class_name: "formText",  label: "消費コスト", params_name: "cost_form", placeholder: "Cost")
-        - td_form(f, @form_params, @placeholder, class_name: "formText",  label: "説明", params_name: "skill_text_form", placeholder: "SkillText")
+        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "SP", params_name: "sp_form")
+        - td_form(f, @form_params, @placeholder, class_name: "formText",  label: "発動タイミング", params_name: "timing_form", placeholder: "Timing")
+      %tr
+        %td.indent
+        - td_form(f, @form_params, @placeholder, class_name: "formText",  label: "効果", params_name: "text_form", placeholder: "Effect", colspan: 3)
+      %tr
+        %td.indent
+        - td_form(f, @form_params, @placeholder, params_name: "class_num_form",label: "習得方法", colspan: 3, label_td_class_name: "indent",
+                    checkboxes: [{label: "能力・クラス",           params_name: "no_artifact", class_name: "after_space"},
+                                 {label: "アーティファクト", params_name: "is_artifact"}])
       %tr.sep
         %td.indent
         - td_date_between_form(f, @form_params, @placeholder, class_name: nil,  label: "新出日付", params_name: "created_at", data_target: "date", placeholder: nil, colspan: 3)
@@ -52,8 +66,10 @@
   %thead
     %tr
       %th= sort_link(@search, :skill_id, "スキル名", default_order: :desc)
-      %th.sep= sort_link(@search, :skill_cost_id, "コスト", default_order: :desc)
-      %th= sort_link(@search, :skill_text, "説明", default_order: :desc)
+      %th.sep= sort_link(@search, :skill_range, "射程", default_order: :desc)
+      %th= sort_link(@search, :skill_sp, "SP", default_order: :desc)
+      %th= sort_link(@search, :skill_timing_id, "タイミング", default_order: :desc)
+      %th= sort_link(@search, :skill_text, "効果", default_order: :desc)
       %th.sep= sort_link(@search, :created_at, "新出日付", default_order: :desc)
   %tbody
     - @new_skills.each do |new_skill|
@@ -61,7 +77,9 @@
         %td
           - if new_skill.skill
             = link_to new_skill.skill.name, skills_path + "?skill_form=\"" + new_skill.skill.name + "\""
-        %td.sep= new_skill.skill.cost.name if new_skill.skill && new_skill.skill.cost
-        %td= new_skill.skill.text if new_skill.skill
+        %td.sep= range_text(new_skill.skill.range)
+        %td= new_skill.skill.sp
+        %td= new_skill.skill.timing.name if new_skill.skill.timing
+        %td= new_skill.skill.text
         %td.sep= new_skill.created_at.to_s(:jp_date)
 = paginate(@new_skills)

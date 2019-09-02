@@ -26,9 +26,27 @@ class NewSkillsController < ApplicationController
     params_to_form(params, @form_params, column_name: "pc_name_name", params_name: "pc_name_form", type: "text")
     params_to_form(params, @form_params, column_name: "skill_id", params_name: "skill_id_form", type: "number")
 
+    params_to_form(params, @form_params, column_name: "skill_sp", params_name: "sp_form", type: "number")
+    params_to_form(params, @form_params, column_name: "skill_timing_id", params_name: "timing_id_form", type: "number")
+    params_to_form(params, @form_params, column_name: "skill_text", params_name: "text_form", type: "text")
+    params_to_form(params, @form_params, column_name: "skill_is_artifact", params_name: "is_artifact_form", type: "number")
+
     params_to_form(params, @form_params, column_name: "skill_name", params_name: "skill_form", type: "text")
-    params_to_form(params, @form_params, column_name: "skill_cost_name", params_name: "cost_form", type: "text")
-    params_to_form(params, @form_params, column_name: "skill_text", params_name: "skill_text_form", type: "text")
+    params_to_form(params, @form_params, column_name: "skill_timing_name", params_name: "timing_form", type: "text")
+
+    checkbox_params_set_query_any(params, @form_params, query_name: "battle_type_eq_any",
+                             checkboxes: [{params_name: "is_pve", value: 0},
+                                          {params_name: "is_pvp", value: 1}])
+
+    checkbox_params_set_query_any(params, @form_params, query_name: "skill_range_eq_any",
+                             checkboxes: [{params_name: "range_no", value: -1},
+                                          {params_name: "range_random", value: -2}])
+
+    params_to_form(params, @form_params, column_name: "skill_range", params_name: "range_form", type: "number")
+
+    checkbox_params_set_query_any(params, @form_params, query_name: "skill_is_artifact_eq_any",
+                             checkboxes: [{params_name: "no_artifact", value: 0},
+                                          {params_name: "is_artifact", value: 1}])
 
     params[:q]["created_at_gteq"] = params["created_at_gteq_form"] && params["created_at_gteq_form"] != "" ? params["created_at_gteq_form"] + " 00:00:00" : nil;
     params[:q]["created_at_lteq"] = params["created_at_lteq_form"] && params["created_at_lteq_form"] != "" ? params["created_at_lteq_form"] + " 23:59:00" : nil;
