@@ -35,6 +35,12 @@
                 = link_to "戦闘ログ一覧", aps_path, class: "dropdown-item"
                 .dropdown-divider
                 = link_to "核爆発一覧", nuclears_path, class: "dropdown-item"
+            %li.nav-item.dropdown
+              %a.nav-link.dropdown-toggle#themes{ :data => {:toggle =>"dropdown"}, :href => "#"}
+                新出データ
+                %span.caret
+              .dropdown-menu
+                = link_to "新出設定スキル一覧", new_skills_path, class: "dropdown-item"
 
     .container
       .row

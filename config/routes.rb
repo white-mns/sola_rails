@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :new_skills
   resources :nuclears
   resources :parties
   resources :aps
