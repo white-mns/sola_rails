@@ -12,6 +12,20 @@ class StatusesController < ApplicationController
     @statuses	= @search.result.per(50)
   end
 
+  # GET /status/graphs
+  def graphs
+    placeholder_set
+    param_set
+    @count	= Status.notnil_date().includes(:pc_name, :role, [main_class: :set_class], [sub1_class: :set_class], [sub2_class: :set_class], [equips: :artifact]).search(params[:q]).result.hit_count()
+    @search	= Status.notnil_date().includes(:pc_name, :role, [main_class: :set_class], [sub1_class: :set_class], [sub2_class: :set_class], [equips: :artifact]).page(params[:page]).search(params[:q])
+    @search.sorts = "id asc" if @search.sorts.empty?
+    @statuses	= @search.result.per(50)
+
+    @library_param = {
+        backgroundColor: "#ebf5fa"
+    }
+  end
+
   def param_set
     @form_params = {}
 
