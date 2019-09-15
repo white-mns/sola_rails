@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :skill_data
   resources :equips
   resources :set_classes
+  get "status/graphs",  :to => "statuses#graphs",  :as => "status_graphs"
   resources :statuses
   resources :names
   resources :proper_names

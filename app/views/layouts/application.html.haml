@@ -37,6 +37,12 @@
                 = link_to "核爆発一覧", nuclears_path, class: "dropdown-item"
             %li.nav-item.dropdown
               %a.nav-link.dropdown-toggle#themes{ :data => {:toggle =>"dropdown"}, :href => "#"}
+                グラフデータ
+                %span.caret
+              .dropdown-menu
+                = link_to "クラス・ロール・ステータス グラフ", status_graphs_path, class: "dropdown-item"
+            %li.nav-item.dropdown
+              %a.nav-link.dropdown-toggle#themes{ :data => {:toggle =>"dropdown"}, :href => "#"}
                 新出データ
                 %span.caret
               .dropdown-menu
