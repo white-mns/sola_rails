@@ -152,7 +152,7 @@ class StatusesController < ApplicationController
     @form_params["created_at_gteq_form"] = params["created_at_gteq_form"]
     @form_params["created_at_lteq_form"] = params["created_at_lteq_form"]
 
-    toggle_params_to_variable(params, @form_params, params_name: "show_status", first_opened: true)
+    toggle_params_to_variable(params, @form_params, params_name: "show_status")
     toggle_params_to_variable(params, @form_params, params_name: "show_used")
     toggle_params_to_variable(params, @form_params, params_name: "show_class")
     toggle_params_to_variable(params, @form_params, params_name: "show_sub_class")

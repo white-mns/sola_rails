@@ -35,9 +35,9 @@
     
     - #==========================================================================================================================
     - tbody_toggle(@form_params, params_name: "show_status",
-                    label: {open: "ステータスを表示する", close: "ステータスを表示しない"},
-                    act_desc: "筋力、体力……、隊列、ロール", base_first: true)
-    %tbody
+                    label: {open: "ステータスを絞り込む", close: "ステータスでの絞り込みを表示しない"},
+                    act_desc: "筋力、体力……、隊列、ロール", base_first: false)
+    %tbody.closed
       %tr.sep
         %td.indent
         - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "筋力", params_name: "str_form", placeholder: "Number")
@@ -71,7 +71,7 @@
     
     - #==========================================================================================================================
     - tbody_toggle(@form_params, params_name: "show_used",
-                    label: {open: "その他ステータスを表示する", close: "その他ステータスを表示しない"},
+                    label: {open: "その他ステータスを絞り込む", close: "その他ステータスでの絞り込みを表示しない"},
                     act_desc: "消費済AP、消費済ステータスポイント、善行値", base_first: false)
     %tbody.closed
       %tr
@@ -84,7 +84,7 @@
     
     - #==========================================================================================================================
     - tbody_toggle(@form_params, params_name: "show_class",
-                    label: {open: "クラスを表示する", close: "クラスを表示しない"},
+                    label: {open: "クラスを絞り込む", close: "クラスでの絞り込みを表示しない"},
                     act_desc: "メインクラス、メインクラスLv、サブクラス", base_first: false)
     %tbody.closed
       %tr
@@ -187,7 +187,7 @@
     
     - #==========================================================================================================================
     - tbody_toggle(@form_params, params_name: "show_equip",
-                    label: {open: "装備アーティファクトを表示する", close: "装備アーティファクトを表示しない"}, base_first: false)
+                    label: {open: "装備アーティファクトを絞り込む", close: "装備アーティファクトでの絞り込みを表示しない"}, base_first: false)
     %tbody.closed
       %tr
         %td.indent
