@@ -8,7 +8,6 @@ class SkillsController < ApplicationController
     param_set
     @count	= Skill.notnil_date().includes(:pc_name, [skill: [:cost, :timing]], [status: :role]).search(params[:q]).result.hit_count()
     @search	= Skill.notnil_date().includes(:pc_name, [skill: [:cost, :timing]], [status: :role]).page(params[:page]).search(params[:q])
-    @search.sorts = "id asc" if @search.sorts.empty?
     @skills	= @search.result.per(50)
   end
 
@@ -17,7 +16,6 @@ class SkillsController < ApplicationController
     placeholder_set
     param_set
     @search	= Skill.notnil_date().includes(:pc_name, [skill: [:cost, :timing]], [status: :role]).page(params[:page]).search(params[:q])
-    @search.sorts = "id asc" if @search.sorts.empty?
     @skills	= @search.result.per(50)
 
     @library_param = {
