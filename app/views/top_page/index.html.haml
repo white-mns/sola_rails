@@ -3,6 +3,8 @@
   このサイトでは『
   %a{:href => "http://lostartifact.xsrv.jp/SoLA/login.php", :target => "_blank"} Story of Lost Artifact
   』を解析して得られる情報を扱っています。
+%p{style: "font-size:x-large;"} 
+  = link_to "⇒オープンベータデータ：SoLAオープンベータ データ小屋", "https://data.teiki.org/sola_0/"
 %br
 %p= top_date_text(@latest_created, @uploaded_created)
 
@@ -22,8 +24,6 @@
           %li 結果データ
           %ul  
             %li= link_to "戦闘ログ一覧", aps_path
-            %br
-            %li= link_to "核爆発一覧", nuclears_path
     .row
       .col-md-6
         %ul
@@ -41,6 +41,14 @@
   .card-body
     %h2 更新履歴
     %ul
+      %li 2020/12/6
+      %ul
+        %li
+          本稼働データに移行。
+          %br
+          オープンベータ時のデータは
+          = link_to "SoLAオープンベータ データ小屋", "https://data.teiki.org/sola_0/"
+          に移行。
       %li 2019/9/15
       %ul
         %li
@@ -61,9 +69,6 @@
           を公開
       %li 2019/8/28
       %ul
-        %li
-          = link_to "核爆発一覧", nuclears_path
-          を公開
         %li
           = link_to "設定スキル一覧", skills_path
           の元スキル名で検索ができない不具合、

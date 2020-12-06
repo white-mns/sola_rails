@@ -34,8 +34,6 @@
                 %span.caret
               .dropdown-menu
                 = link_to "戦闘ログ一覧", aps_path, class: "dropdown-item"
-                .dropdown-divider
-                = link_to "核爆発一覧", nuclears_path, class: "dropdown-item"
             %li.nav-item.dropdown
               %a.nav-link.dropdown-toggle#themes{ :data => {:toggle =>"dropdown"}, :href => "#"}
                 グラフデータ
@@ -62,6 +60,8 @@
           = link_to "プライバシーポリシー", top_page_privacy_path
           %br
           ソースコード [#{link_to "解析部分", "https://github.com/white-mns/sola_parse"}] [#{link_to "表示部分", "https://github.com/white-mns/sola_rails"}]
+          %br
+          #{link_to "オープンベータ：SoLAオープンベータ データ小屋", "https://data.teiki.org/sola_0/"}
           %br
           #{link_to "その他ゲームのデータ小屋", "https://data.teiki.org/"}
       = render "layouts/analytics"
