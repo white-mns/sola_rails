@@ -1,6 +1,6 @@
 module ApplicationHelper
     def page_title
-        title = "SoLAテストプレイデータ小屋"
+        title = "SoLAオープンベータ データ小屋"
         title = @page_title + " | " + title if @page_title
         title
     end
