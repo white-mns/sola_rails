@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_02_105609) do
+ActiveRecord::Schema.define(version: 2020_12_06_093651) do
 
   create_table "aps", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
     t.integer "ap_no"
@@ -148,6 +148,13 @@ ActiveRecord::Schema.define(version: 2020_11_02_105609) do
     t.index ["created_at", "id"], name: "createdat_and_id"
     t.index ["e_no", "created_at", "set_no"], name: "createdat_and_eno"
     t.index ["skill_id"], name: "index_skills_on_skill_id"
+  end
+
+  create_table "status_dummies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.integer "e_no"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["e_no", "created_at"], name: "createdat_and_eno"
   end
 
   create_table "statuses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|

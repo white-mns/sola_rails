@@ -71,7 +71,7 @@ class StatusesController < ApplicationController
     params_to_form(params, @form_params, column_name: "sub2_class_lv", params_name: "sub2_lv_form", type: "number")
 
     proper_name = ProperName.pluck(:name, :proper_id).inject(Hash.new(0)){|hash, a| hash[a[0]] = a[1] ; hash}
-    checkbox_params_set_query_any(params, @form_params, query_name: "main_class_class_id_eq_any",
+    checkbox_params_set_query_any(params, @form_params, query_name: "status_dummy_main_class_class_id_eq_any",
                              checkboxes: [{params_name: "main_fighter",         value: proper_name["ファイター"]},
                                           {params_name: "main_bushido",         value: proper_name["ブシドー"]},
                                           {params_name: "main_crusader",        value: proper_name["クルセイダー"]},
@@ -89,7 +89,7 @@ class StatusesController < ApplicationController
                                           {params_name: "main_battle_bard",     value: proper_name["バトルバード"]},
                                           {params_name: "main_dancer",          value: proper_name["ダンサー"]}])
   
-    checkbox_params_set_query_any(params, @form_params, query_name: "sub1_class_class_id_or_sub2_class_class_id_eq_any",
+    checkbox_params_set_query_any(params, @form_params, query_name: "status_dummy_sub1_class_class_id_or_status_dummy_sub2_class_class_id_eq_any",
                              checkboxes: [{params_name: "sub_fighter",         value: proper_name["ファイター"]},
                                           {params_name: "sub_bushido",         value: proper_name["ブシドー"]},
                                           {params_name: "sub_crusader",        value: proper_name["クルセイダー"]},
@@ -107,7 +107,7 @@ class StatusesController < ApplicationController
                                           {params_name: "sub_battle_bard",     value: proper_name["バトルバード"]},
                                           {params_name: "sub_dancer",          value: proper_name["ダンサー"]}])   
 
-    checkbox_params_set_query_any(params, @form_params, query_name: "sub1_class_class_id_eq_any",
+    checkbox_params_set_query_any(params, @form_params, query_name: "status_dummy_sub1_class_class_id_eq_any",
                              checkboxes: [{params_name: "sub1_fighter",         value: proper_name["ファイター"]},
                                           {params_name: "sub1_bushido",         value: proper_name["ブシドー"]},
                                           {params_name: "sub1_crusader",        value: proper_name["クルセイダー"]},
@@ -125,7 +125,7 @@ class StatusesController < ApplicationController
                                           {params_name: "sub1_battle_bard",     value: proper_name["バトルバード"]},
                                           {params_name: "sub1_dancer",          value: proper_name["ダンサー"]}])   
  
-    checkbox_params_set_query_any(params, @form_params, query_name: "sub2_class_class_id_eq_any",
+    checkbox_params_set_query_any(params, @form_params, query_name: "status_dummy_sub2_class_class_id_eq_any",
                              checkboxes: [{params_name: "sub2_fighter",         value: proper_name["ファイター"]},
                                           {params_name: "sub2_bushido",         value: proper_name["ブシドー"]},
                                           {params_name: "sub2_crusader",        value: proper_name["クルセイダー"]},
