@@ -1,8 +1,14 @@
-%h1 SoLAデータ小屋
+%h1 SoLAテストプレイデータ小屋
 %p
   このサイトでは『
   %a{:href => "http://lostartifact.xsrv.jp/SoLA/login.php", :target => "_blank"} Story of Lost Artifact
-  』を解析して得られる情報を扱っています。
+  』のテストプレイ結果を解析して得られる情報を扱っていました。
+  %br
+  テストプレイ終了に伴い、最終日までの全結果から取得したデータを残しています。
+  %br
+  戦闘ログへのリンクは弊サイト#{link_to "データ小屋アーカイブス", "https://archives.teiki.org/sola/0/"}に保存したものに置き換えています。
+%p{style: "font-size:x-large;"} 
+  = link_to "⇒本稼働データ：SoLAデータ小屋", "https://data.teiki.org/sola/"
 %br
 %p= top_date_text(@latest_created, @uploaded_created)
 
@@ -41,6 +47,11 @@
   .card-body
     %h2 更新履歴
     %ul
+      %li 2020/12/6
+      %ul
+        %li
+          = link_to "クラス・ロール・ステータス グラフ", status_graphs_path + "?graph=on"
+          を公開
       %li 2019/9/15
       %ul
         %li

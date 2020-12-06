@@ -1,6 +1,6 @@
 module ApplicationHelper
     def page_title
-        title = "SoLAデータ小屋"
+        title = "SoLAテストプレイデータ小屋"
         title = @page_title + " | " + title if @page_title
         title
     end
@@ -30,16 +30,17 @@ module ApplicationHelper
 
     def character_link(e_no)
         if e_no <= 0 then return end
+        return
 
         file_name = sprintf("%d",e_no)
-        link_to " 結果", "http://lostartifact.xsrv.jp/SoLA/main.php?id="+file_name, :target => "_blank"
+        link_to " 結果", "https://lostartifact.xsrv.jp/SoLA/main.php?id="+file_name, :target => "_blank"
     end
  
     def ap_link(ap_no)
         if ap_no <= 0 then return end
 
         file_name = sprintf("%d",ap_no)
-        link_to " 結果", "http://lostartifact.xsrv.jp/SoLA/battle/"+file_name+".html", :target => "_blank"
+        link_to " 結果", "https://archives.teiki.org/sola/0/battle/"+file_name+".html", :target => "_blank"
     end
 
     def search_submit_button()
