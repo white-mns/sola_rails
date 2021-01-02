@@ -48,7 +48,8 @@ class SetClassesController < ApplicationController
                                           {params_name: "class_priest",          value: proper_name["プリースト"]},
                                           {params_name: "class_time_shifter",    value: proper_name["タイムシフター"]},
                                           {params_name: "class_battle_bard",     value: proper_name["バトルバード"]},
-                                          {params_name: "class_dancer",          value: proper_name["ダンサー"]}])
+                                          {params_name: "class_dancer",          value: proper_name["ダンサー"]},
+                                          {params_name: "class_gremlin_tamer",   value: proper_name["グレムリンテイマー"]}])
 
     checkbox_params_set_query_any(params, @form_params, query_name: "class_num_eq_any",
                              checkboxes: [{params_name: "class_main", value: 1},
