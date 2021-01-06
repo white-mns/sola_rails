@@ -1,0 +1,80 @@
+%h2.h2_decoration
+  SoLAの「冒険に出る」ページのフォローリストからデータ小屋検索用文字列を作るスクリプト
+%img{width:"100%", src:"https://data.teiki.org/sola/img/sola_follow_ids_script_1.png"}
+%br
+%br
+
+%h4.h4_decoration
+  ユーザースクリプト
+= link_to "ユーザースクリプト", "https://data.teiki.org/sola/SoLAFollowIDsForDatagoya.user.js"
+%br
+%br
+%p
+  %span.example_select.example_toggle.pointer
+    - help_icon
+    使い方
+    - act_desc(false)
+#example.closed
+  １．
+  = link_to "Tampermonkey", "https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo"
+  もしくは
+  = link_to "Greasemonkey", "https://addons.mozilla.org/ja/firefox/addon/greasemonkey/"
+  をブラウザにインストールします。
+  %br
+  （FireFoxではGreasemonkey、Google ChromeとEdgeではTampermonkeyをインストールします）
+
+  %br
+  ２．
+  = link_to "ユーザースクリプトのURL", "https://data.teiki.org/sola/SoLAFollowIDsForDatagoya.user.js"
+  を開いてスクリプトインストールします。
+  %br
+  %img{width:"50%", src:"https://data.teiki.org/sola/img/sola_follow_ids_script_2.png"}
+  %br
+  ３．スクリプトをインストールした後に、「
+  = link_to "冒険に出る", "http://lostartifact.xsrv.jp/SoLA/adventure.php"
+  」ページを開くと、フォローリストの上に「データ小屋検索用ID文字列取得」というボタンが追加されるようになります。ボタンをクリックするとフォローしているキャラクターのIDが連結された文字列が表示されます。文字列をクリックすると全選択になるので、それをコピーします。
+  %br
+  %img{width:"50%", src:"https://data.teiki.org/sola/img/sola_follow_ids_script_3.png"}
+  %br
+  %br
+  %img{width:"50%", src:"https://data.teiki.org/sola/img/sola_follow_ids_script_4.png"}
+  %br
+  ４．データ小屋の設定スキル一覧など、絞り込みたいページの検索フォーム「No」にコピーした文字列を貼り付け、検索するボタンを押します。
+  %br
+  %img{width:"50%", src:"https://data.teiki.org/sola/img/sola_follow_ids_script_5.png"}
+%br
+%br
+
+%h4.h4_decoration
+  ブックマークレット
+//%pre.pre-scrollable{style: "background-color:#f8f8f8;"}{onclick:'this.select()'}
+//  %code
+%div{style:'display:flex;flex-direction: column;'}
+  %textarea{rows:5, onclick:'this.select()'}
+    javascript:(function(){if(!document.querySelector("#DatagoyaTextArea")){var b=Array.from(document.querySelectorAll("th:nth-child(2) &gt; a")).map(function(a){return a.href.replace(/[^\d]/g,"")}).join("/");document.querySelector("table").insertAdjacentHTML("beforebegin","&lt;div id='DatagoyaTextArea' style='display:flex;flex-direction: column;'&gt;&lt;textarea onclick='this.select()'&gt;"+b+"&lt;/textarea&gt;&lt;/div&gt;")}})();
+%br
+%p
+  %span.example_select.example_toggle.pointer
+    - help_icon
+    使い方
+    - act_desc(false)
+#example.closed
+  １．新規ブックマーク作成、もしくはどこかしらのページをブックマークして編集します。
+  %br
+  ２．編集するブックマークのURL欄に上記のコードをコピーしてお気に入り登録します。名前は「SoLAフォローNo結合」みたいにわかりやすく登録しておきます。
+  %br
+  %img{width:"50%", src:"https://data.teiki.org/sola/img/sola_follow_ids_bookmark_1.png"}
+  %br
+  ３．「
+  = link_to "冒険に出る", "http://lostartifact.xsrv.jp/SoLA/adventure.php"
+  」ページを開いた状態で登録したブックマークレットをクリックすると、フォローリストの上にフォローしているキャラクターのIDが連結された文字列が表示されます。文字列をクリックすると全選択になるので、それをコピーします。
+  %br
+  %img{width:"50%", src:"https://data.teiki.org/sola/img/sola_follow_ids_bookmark_2.png"}
+  %br
+  ４．データ小屋の設定スキル一覧など、絞り込みたいページの検索フォーム「No」にコピーした文字列を貼り付け、検索するボタンを押します。
+  %br
+  %img{width:"50%", src:"https://data.teiki.org/sola/img/sola_follow_ids_script_5.png"}
+%br
+%br
+
+

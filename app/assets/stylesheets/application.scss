@@ -125,7 +125,20 @@ h2 {
 h3.graph_title {
     border-left:$blue-border-dark 6px solid;
     border-bottom:$blue-border-dark 2px solid;
+    padding-left: 0.5rem;
 }
+
+.h2_decoration {
+    border-left:$blue-border-dark 6px solid;
+    border-bottom:$blue-border-dark 2px solid;
+    padding-left: 0.5rem;
+}
+
+.h4_decoration {
+    border-left:$blue-border-dark 3px solid;
+    padding-left: 0.5rem;
+}
+
 
 label {
     font-weight: bold;
