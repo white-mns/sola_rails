@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :names
   resources :proper_names
   resources :uploaded_checks
+  get 'script', :to => "top_page#script", :as => "top_page_script"
   get 'privacy', :to => "top_page#privacy", :as => "top_page_privacy"
   root 'top_page#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
