@@ -1,6 +1,6 @@
 class TopPageController < ApplicationController
   def index
-    @latest_created = Status.maximum("created_at")
+    @latest_updated = Status.maximum("updated_at")
     @uploaded_created = UploadedCheck.maximum("created_at")
   end
 end
