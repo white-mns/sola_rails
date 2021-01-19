@@ -1,13 +1,13 @@
 module TopPageHelper
-    def top_date_text(created_at, uploaded)
-        if !created_at then return "---" end
+    def top_date_text(updated_at, uploaded)
+        if !updated_at then return "---" end
         
-        text = created_at.to_s(:jp_date)
+        text = updated_at.to_s(:jp_date_hour)
 
-        if created_at == uploaded then
-            text += " 早朝のデータまで反映しています"
+        if updated_at.to_s(:jp_date) == uploaded.to_s(:jp_date) then
+            text += "時頃のデータまで反映しています"
         else
-            text += " のデータに更新中です…"
+            text += "時のデータに更新中です…"
         end
 
         text
