@@ -3,7 +3,7 @@ class Skill < ApplicationRecord
 	belongs_to :status, :foreign_key => [:e_no, :created_at], :primary_key => [:e_no, :created_at], :class_name => 'Status'
 	belongs_to :skill,  :foreign_key => :skill_id,  :primary_key => :skill_id,  :class_name => 'SkillDatum'
 
-    scope :where_old_top, ->(latest_result, show_old_top, params) {
+    scope :where_old_top, ->(last_result, show_old_top, params) {
         if show_old_top == "1" then
                 skill_ids  = []
 

@@ -27,18 +27,18 @@ class SkillsController < ApplicationController
   def param_set
     @form_params = {}
 
-    @latest_created = UploadedCheck.maximum("created_at")
+    @last_created = UploadedCheck.maximum("created_at")
 
     params_clean(params)
     if !params["is_form"] then
         if action_name != "history" then
-            params["created_at_gteq_form"] ||= @latest_created.to_date.to_s
+            params["created_at_gteq_form"] ||= @last_created.to_date.to_s
         else
-            params["old_rank_date_form"] = @latest_created.to_date.to_s
+            params["old_rank_date_form"] = @last_created.to_date.to_s
             params["old_rank_num_form"] = 5
         end
 
-        params["created_at_lteq_form"] ||= @latest_created.to_date.to_s
+        params["created_at_lteq_form"] ||= @last_created.to_date.to_s
     end
 
     params_to_form(params, @form_params, column_name: "pc_name_name", params_name: "pc_name_form", type: "text")

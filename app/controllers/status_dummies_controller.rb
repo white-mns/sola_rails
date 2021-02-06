@@ -15,12 +15,12 @@ class StatusDummiesController < ApplicationController
   def param_set
     @form_params = {}
 
-    @latest_created = UploadedCheck.maximum("created_at")
+    @last_created = UploadedCheck.maximum("created_at")
 
     params_clean(params)
     if !params["is_form"] then
-        params["created_at_gteq_form"] ||= @latest_created.to_date.to_s
-        params["created_at_lteq_form"] ||= @latest_created.to_date.to_s
+        params["created_at_gteq_form"] ||= @last_created.to_date.to_s
+        params["created_at_lteq_form"] ||= @last_created.to_date.to_s
     end
 
     params[:q]["created_at_gteq"] = params["created_at_gteq_form"] && params["created_at_gteq_form"] != "" ? params["created_at_gteq_form"] + " 00:00:00" : nil;
