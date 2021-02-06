@@ -15,7 +15,7 @@ class NuclearsController < ApplicationController
   def param_set
     @form_params = {}
 
-    @latest_created = UploadedCheck.maximum("created_at")
+    @last_created = UploadedCheck.maximum("created_at")
 
     params_clean(params)
 
@@ -30,7 +30,7 @@ class NuclearsController < ApplicationController
     @params_rivals[:q]["party_side_eq"] = 1
 
     if !params["is_form"] then
-        params["created_at_lteq_form"] ||= @latest_created.to_date.to_s
+        params["created_at_lteq_form"] ||= @last_created.to_date.to_s
     end
 
     params_to_form(params, @form_params, column_name: "pc_name_name", params_name: "pc_name_form", type: "text")

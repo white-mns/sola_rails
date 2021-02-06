@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :last_archives
   resources :status_dummies
   resources :new_skills
   resources :nuclears

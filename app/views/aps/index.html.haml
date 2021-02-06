@@ -159,5 +159,5 @@
         %td.sep= ap.created_at.to_s(:jp_all)
         - if @form_params["show_battle_result"] == "1"
           %td.sep= battle_result_text(ap)
-        %td.sep= ap_link(ap.ap_no)
+        %td.sep= ap_link(ap.ap_no, @last_archive_ap_no)
 = paginate(@aps)
