@@ -35,11 +35,15 @@ module ApplicationHelper
         link_to " 結果", "http://lostartifact.xsrv.jp/SoLA/main.php?id="+file_name, :target => "_blank"
     end
  
-    def ap_link(ap_no)
+    def ap_link(ap_no, last_archive_ap_no)
         if ap_no <= 0 then return end
 
         file_name = sprintf("%d",ap_no)
-        link_to " 結果", "http://lostartifact.xsrv.jp/SoLA/battle/"+file_name+".html", :target => "_blank"
+        if last_archive_ap_no && ap_no <= last_archive_ap_no
+          link_to " アーカイブ", "https://archives.teiki.org/sola/1/battle/"+file_name+".html", :target => "_blank"
+        else
+          link_to " 結果", "http://lostartifact.xsrv.jp/SoLA/battle/"+file_name+".html", :target => "_blank"
+        end
     end
 
     def search_submit_button()

@@ -1,0 +1,2 @@
+class LastArchive < ApplicationRecord
+end

@@ -16,6 +16,7 @@ class ApsController < ApplicationController
     @form_params = {}
 
     @latest_created = UploadedCheck.maximum("created_at")
+    @last_archive_ap_no = LastArchive.maximum("ap_no")
 
     params_clean(params)
 

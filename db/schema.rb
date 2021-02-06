@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_06_093651) do
+ActiveRecord::Schema.define(version: 2021_02_06_080407) do
 
   create_table "aps", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
     t.integer "ap_no"
@@ -41,6 +41,12 @@ ActiveRecord::Schema.define(version: 2020_12_06_093651) do
     t.index ["created_at"], name: "index_equips_on_created_at"
     t.index ["e_no", "created_at"], name: "createdat_and_eno"
     t.index ["equip_num"], name: "index_equips_on_equip_num"
+  end
+
+  create_table "last_archives", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.integer "ap_no"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "names", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
