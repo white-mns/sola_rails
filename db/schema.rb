@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_06_080407) do
+ActiveRecord::Schema.define(version: 2021_02_16_035510) do
 
   create_table "aps", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
     t.integer "ap_no"
@@ -195,6 +195,15 @@ ActiveRecord::Schema.define(version: 2021_02_06_080407) do
     t.index ["used_stp"], name: "index_statuses_on_used_stp"
     t.index ["vit"], name: "index_statuses_on_vit"
     t.index ["will"], name: "index_statuses_on_will"
+  end
+
+  create_table "titles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+    t.integer "e_no"
+    t.string "title"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["e_no", "created_at", "title"], name: "createdat_and_eno"
+    t.index ["title"], name: "index_titles_on_title"
   end
 
   create_table "uploaded_checks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
