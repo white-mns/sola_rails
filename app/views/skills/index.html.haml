@@ -33,8 +33,8 @@
         %td.indent
         - td_form(f, @form_params, @placeholder, params_name: "class_num_form",  label: "戦闘の種類", colspan: 3, label_td_class_name: "indent",
                     checkboxes: [{label: "クエスト用", params_name: "is_pve", class_name: "after_space"},
-                                 {label: "対人戦用", params_name: "is_pvp"},
-                                 {label: "物語戦用", params_name: "is_tale"},
+                                 {label: "対人戦用", params_name: "is_pvp", class_name: "after_space mobile_br"},
+                                 {label: "物語戦用", params_name: "is_tale", class_name: "after_space"},
                                  {label: "チャレダン戦用", params_name: "is_challenge"}])
       %tr.sep
         %td.indent
