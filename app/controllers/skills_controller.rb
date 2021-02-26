@@ -72,7 +72,9 @@ class SkillsController < ApplicationController
 
     checkbox_params_set_query_any(params, @form_params, query_name: "battle_type_eq_any",
                              checkboxes: [{params_name: "is_pve", value: 0},
-                                          {params_name: "is_pvp", value: 1}])
+                                          {params_name: "is_pvp", value: 1},
+                                          {params_name: "is_tale", value: 2},
+                                          {params_name: "is_challenge", value: 3}])
 
     checkbox_params_set_query_any(params, @form_params, query_name: "skill_range_eq_any",
                              checkboxes: [{params_name: "range_no", value: -1},
