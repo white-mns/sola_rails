@@ -32,8 +32,10 @@
       %tr
         %td.indent
         - td_form(f, @form_params, @placeholder, params_name: "class_num_form",  label: "戦闘の種類", colspan: 3, label_td_class_name: "indent",
-                    checkboxes: [{label: "ストーリー・クエスト用", params_name: "is_pve", class_name: "after_space"},
-                                 {label: "対人戦用", params_name: "is_pvp"}])
+                    checkboxes: [{label: "クエスト用", params_name: "is_pve", class_name: "after_space"},
+                                 {label: "対人戦用", params_name: "is_pvp"},
+                                 {label: "物語戦用", params_name: "is_tale"},
+                                 {label: "チャレダン戦用", params_name: "is_challenge"}])
       %tr.sep
         %td.indent
         - td_form(f, @form_params, @placeholder, class_name: "formText",  label: "元スキル名", params_name: "skill_form", placeholder: "Skill", colspan: 3)
@@ -174,8 +176,10 @@
       %tr
         %td= pc_name_text(skill.e_no, skill.pc_name)
         %td.sep
-          = "冒険" if skill.battle_type == 0
+          = "クエスト" if skill.battle_type == 0
           = "対人" if skill.battle_type == 1
+          = "物語" if skill.battle_type == 2
+          = "チャレダン" if skill.battle_type == 3
         %td.sep= skill.set_no
         %td= skill.skill.name if skill.skill
         - if @form_params["show_name"] == "1"

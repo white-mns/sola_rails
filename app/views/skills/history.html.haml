@@ -65,7 +65,7 @@
         %td{colspan: "3"}
           - search_submit_button
 
-%h3.graph_title スキル設定数(ストーリー・クエスト用)
+%h3.graph_title スキル設定数(クエスト用)
 = line_chart Skill.notnil_date().where(battle_type: 0).where_old_top(@last_created, @form_params["show_old_top"], params).search(params[:q]).result.to_skill_history_graph(params, :skill_id), ytitle:"人数", library: {style: "min-width:900px;"}, library: @library_param
 %br
 
@@ -73,3 +73,12 @@
 = line_chart Skill.notnil_date().where(battle_type: 1).where_old_top(@last_created, @form_params["show_old_top"], params).search(params[:q]).result.to_skill_history_graph(params, :skill_id), ytitle:"人数", library: {style: "min-width:900px;"}, library: @library_param
 %br
 
+
+%h3.graph_title スキル設定数(物語戦用)
+= line_chart Skill.notnil_date().where(battle_type: 2).where_old_top(@last_created, @form_params["show_old_top"], params).search(params[:q]).result.to_skill_history_graph(params, :skill_id), ytitle:"人数", library: {style: "min-width:900px;"}, library: @library_param
+%br
+
+
+%h3.graph_title スキル設定数(チャレダン用)
+= line_chart Skill.notnil_date().where(battle_type: 3).where_old_top(@last_created, @form_params["show_old_top"], params).search(params[:q]).result.to_skill_history_graph(params, :skill_id), ytitle:"人数", library: {style: "min-width:900px;"}, library: @library_param
+%br
