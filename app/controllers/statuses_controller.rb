@@ -52,6 +52,9 @@ class StatusesController < ApplicationController
     params_to_form(params, @form_params, column_name: "used_ap", params_name: "used_ap_form", type: "number")
     params_to_form(params, @form_params, column_name: "used_stp", params_name: "used_stp_form", type: "number")
     params_to_form(params, @form_params, column_name: "goodness", params_name: "goodness_form", type: "number")
+    params_to_form(params, @form_params, column_name: "mel", params_name: "mel_form", type: "number")
+    params_to_form(params, @form_params, column_name: "medal", params_name: "medal_form", type: "number")
+    params_to_form(params, @form_params, column_name: "kudos", params_name: "kudos_form", type: "number")
 
     proper_name = ProperName.pluck(:name, :proper_id).inject(Hash.new(0)){|hash, a| hash[a[0]] = a[1] ; hash}
     checkbox_params_set_query_any(params, @form_params, query_name: "role_id_eq_any",
@@ -148,10 +151,20 @@ class StatusesController < ApplicationController
                                           {params_name: "sub2_gremlin_tamer",   value: proper_name["グレムリンテイマー"]}])   
 
     params_to_form(params, @form_params, column_name: "equips_artifact_name", params_name: "artifact_form", type: "text")
+    params_to_form(params, @form_params, column_name: "equips_pve_artifact_name",       params_name: "artifact_pve_form", type: "text")
+    params_to_form(params, @form_params, column_name: "equips_pvp_artifact_name",       params_name: "artifact_pvp_form", type: "text")
+    params_to_form(params, @form_params, column_name: "equips_tale_artifact_name",      params_name: "artifact_tale_form", type: "text")
+    params_to_form(params, @form_params, column_name: "equips_challenge_artifact_name", params_name: "artifact_challenge_form", type: "text")
 
 
     params[:q]["created_at_gteq"] = params["created_at_gteq_form"] && params["created_at_gteq_form"] != "" ? params["created_at_gteq_form"] + " 00:00:00" : nil;
     params[:q]["created_at_lteq"] = params["created_at_lteq_form"] && params["created_at_lteq_form"] != "" ? params["created_at_lteq_form"] + " 23:59:00" : nil;
+
+    params["show_artifact_pve"]    = (!params["is_form"]) ? "on" : params["show_artifact_pve"]
+    @form_params["show_artifact_pve"] = params["show_artifact_pve"]
+    @form_params["show_artifact_pvp"] = params["show_artifact_pvp"]
+    @form_params["show_artifact_tale"] = params["show_artifact_tale"]
+    @form_params["show_artifact_challenge"] = params["show_artifact_challenge"]
 
     @form_params["created_at_gteq_form"] = params["created_at_gteq_form"]
     @form_params["created_at_lteq_form"] = params["created_at_lteq_form"]

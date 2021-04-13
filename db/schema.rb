@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_16_035510) do
+ActiveRecord::Schema.define(version: 2021_04_13_055401) do
 
   create_table "aps", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
     t.integer "ap_no"
@@ -37,7 +37,9 @@ ActiveRecord::Schema.define(version: 2021_02_16_035510) do
     t.integer "equip_num"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "battle_type"
     t.index ["artifact_id"], name: "index_equips_on_artifact_id"
+    t.index ["battle_type"], name: "index_equips_on_battle_type"
     t.index ["created_at"], name: "index_equips_on_created_at"
     t.index ["e_no", "created_at"], name: "createdat_and_eno"
     t.index ["equip_num"], name: "index_equips_on_equip_num"
@@ -180,14 +182,20 @@ ActiveRecord::Schema.define(version: 2021_02_16_035510) do
     t.integer "goodness"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "mel"
+    t.integer "medal"
+    t.integer "kudos"
     t.index ["agi"], name: "index_statuses_on_agi"
     t.index ["charm"], name: "index_statuses_on_charm"
     t.index ["created_at"], name: "index_statuses_on_created_at"
     t.index ["e_no", "created_at"], name: "createdat_and_eno"
     t.index ["goodness"], name: "index_statuses_on_goodness"
     t.index ["int"], name: "index_statuses_on_int"
+    t.index ["kudos"], name: "index_statuses_on_kudos"
     t.index ["line"], name: "index_statuses_on_line"
     t.index ["mag"], name: "index_statuses_on_mag"
+    t.index ["medal"], name: "index_statuses_on_medal"
+    t.index ["mel"], name: "index_statuses_on_mel"
     t.index ["role_id"], name: "index_statuses_on_role_id"
     t.index ["sense"], name: "index_statuses_on_sense"
     t.index ["str"], name: "index_statuses_on_str"
