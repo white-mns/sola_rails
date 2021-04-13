@@ -199,7 +199,22 @@
     %tbody.closed
       %tr
         %td.indent
-        - td_form(f, @form_params, @placeholder, class_name: "formText",  label: "装備アーティファクト", params_name: "artifact_form", placeholder: "Artifact", colspan: 3)
+        - td_form(f, @form_params, @placeholder, params_name: "class_num_form",  label: "表示する戦闘", colspan: 3, label_td_class_name: "indent",
+                    checkboxes: [{label: "クエスト用", params_name: "show_artifact_pve", class_name: "after_space"},
+                                 {label: "対人戦用", params_name: "show_artifact_pvp", class_name: "after_space mobile_br"},
+                                 {label: "物語戦用", params_name: "show_artifact_tale", class_name: "after_space"},
+                                 {label: "チャレダン戦用", params_name: "show_artifact_challenge"}])
+      %tr
+        %td.indent
+        - td_form(f, @form_params, @placeholder, class_name: "formText",  label: "全ての装備アーティファクト", params_name: "artifact_form", placeholder: "Artifact", colspan: 3)
+      %tr
+        %td.indent
+        - td_form(f, @form_params, @placeholder, class_name: "formText",  label: "クエスト用", params_name: "artifact_pve_form", placeholder: "Artifact")
+        - td_form(f, @form_params, @placeholder, class_name: "formText",  label: "対人戦用", params_name: "artifact_pvp_form", placeholder: "Artifact")
+      %tr
+        %td.indent
+        - td_form(f, @form_params, @placeholder, class_name: "formText",  label: "物語戦用", params_name: "artifact_tale_form", placeholder: "Artifact")
+        - td_form(f, @form_params, @placeholder, class_name: "formText",  label: "チャレダン用", params_name: "artifact_challenge_form", placeholder: "Artifact")
     
     - #==========================================================================================================================
     %tbody
@@ -245,7 +260,14 @@
         %th.sep= sort_link(@search, :sub2_class_class_id, "サブ2", default_order: :desc)
         %th= sort_link(@search, :sub2_class_lv, "Lv", default_order: :desc)
       - if @form_params["show_equip"] == "1"
-        %th.sep= sort_link(@search, :equips_artifact_id, "装備名", default_order: :desc)
+        - if @form_params["show_artifact_pve"] == "on"
+          %th.sep= sort_link(@search, :equips_artifact_id, "クエスト装備", default_order: :desc)
+        - if @form_params["show_artifact_pvp"] == "on"
+          %th= sort_link(@search, :equips_artifact_id, "対人装備", default_order: :desc)
+        - if @form_params["show_artifact_tale"] == "on"
+          %th= sort_link(@search, :equips_artifact_id, "物語装備", default_order: :desc)
+        - if @form_params["show_artifact_challenge"] == "on"
+          %th= sort_link(@search, :equips_artifact_id, "チャレダン装備", default_order: :desc)
       %th.sep= sort_link(@search, :created_at, "取得日", default_order: :desc)
       %th.sep{colspan: "2"} 結果リンク
   %tbody
@@ -277,8 +299,18 @@
           %td.sep= status.sub2_class.set_class.name if status.sub2_class && status.sub2_class.set_class
           %td= status.sub2_class.lv if status.sub2_class
         - if @form_params["show_equip"] == "1"
-          %td.sep
-            - equips_text(status.equips)
+          - if @form_params["show_artifact_pve"] == "on"
+            %td.sep
+              - equips_text(status.equips_pve)
+          - if @form_params["show_artifact_pvp"] == "on"
+            %td
+              - equips_text(status.equips_pvp)
+          - if @form_params["show_artifact_tale"] == "on"
+            %td
+              - equips_text(status.equips_tale)
+          - if @form_params["show_artifact_challenge"] == "on"
+            %td
+              - equips_text(status.equips_challenge)
         %td.sep= status.created_at.to_s(:jp_date)
         %td.sep= character_link(status.e_no)
 = paginate(@statuses)
