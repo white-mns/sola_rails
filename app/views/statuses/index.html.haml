@@ -78,9 +78,13 @@
         %td.indent
         - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "消費済AP", params_name: "used_ap_form")
         - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "消費済ステータスポイント", params_name: "used_stp_form")
+      %tr.sep
+        %td.indent
+        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "メル", params_name: "mel_form")
+        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "ギルドメダル", params_name: "medal_form")
       %tr
         %td.indent
-        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "善行値", params_name: "goodness_form", colspan: 3)
+        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "名声", params_name: "kudos_form", colspan: 3)
     
     - #==========================================================================================================================
     - tbody_toggle(@form_params, params_name: "show_class",
@@ -230,7 +234,9 @@
       - if @form_params["show_used"] == "1"
         %th.sep= sort_link(@search, :used_ap, "済AP", default_order: :desc)
         %th= sort_link(@search, :used_stp, "済ステP", default_order: :desc)
-        %th= sort_link(@search, :goodness, "善行値", default_order: :desc)
+        %th.sep= sort_link(@search, :mel, "メル", default_order: :desc)
+        %th= sort_link(@search, :medal, "メダル", default_order: :desc)
+        %th= sort_link(@search, :kudos, "名声", default_order: :desc)
       - if @form_params["show_class"] == "1"
         %th.sep= sort_link(@search, :main_class_class_id, "メイン", default_order: :desc)
         %th= sort_link(@search, :main_class_lv, "Lv", default_order: :desc)
@@ -260,7 +266,9 @@
         - if @form_params["show_used"] == "1"
           %td.sep= status.used_ap
           %td= status.used_stp
-          %td= status.goodness
+          %td.sep= status.mel
+          %td= status.medal
+          %td= status.kudos
         - if @form_params["show_class"] == "1"
           %td.sep= status.main_class.set_class.name if status.main_class && status.main_class.set_class
           %td= status.main_class.lv if status.main_class

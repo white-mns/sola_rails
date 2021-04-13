@@ -52,6 +52,9 @@ class StatusesController < ApplicationController
     params_to_form(params, @form_params, column_name: "used_ap", params_name: "used_ap_form", type: "number")
     params_to_form(params, @form_params, column_name: "used_stp", params_name: "used_stp_form", type: "number")
     params_to_form(params, @form_params, column_name: "goodness", params_name: "goodness_form", type: "number")
+    params_to_form(params, @form_params, column_name: "mel", params_name: "mel_form", type: "number")
+    params_to_form(params, @form_params, column_name: "medal", params_name: "medal_form", type: "number")
+    params_to_form(params, @form_params, column_name: "kudos", params_name: "kudos_form", type: "number")
 
     proper_name = ProperName.pluck(:name, :proper_id).inject(Hash.new(0)){|hash, a| hash[a[0]] = a[1] ; hash}
     checkbox_params_set_query_any(params, @form_params, query_name: "role_id_eq_any",
