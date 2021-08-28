@@ -49,6 +49,13 @@
   .card-body
     %h2 更新履歴
     %ul
+      %li 2021/8/28
+      %ul
+        %li
+          = link_to "ステータス・クラス・装備 一覧", statuses_path
+          、
+          = link_to "クラス・ロール・ステータス グラフ", status_graphs_path + "?graph=on"
+          に新クラス「メディカリスト」での絞り込みを追加
       %li 2021/4/13
       %ul
         %li

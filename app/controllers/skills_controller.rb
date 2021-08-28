@@ -69,6 +69,9 @@ class SkillsController < ApplicationController
     params_to_form(params, @form_params, column_name: "status_used_ap", params_name: "used_ap_form", type: "number")
     params_to_form(params, @form_params, column_name: "status_used_stp", params_name: "used_stp_form", type: "number")
     params_to_form(params, @form_params, column_name: "status_goodness", params_name: "goodness_form", type: "number")
+    params_to_form(params, @form_params, column_name: "status_mel", params_name: "mel_form", type: "number")
+    params_to_form(params, @form_params, column_name: "status_medal", params_name: "medal_form", type: "number")
+    params_to_form(params, @form_params, column_name: "status_kudos", params_name: "kudos_form", type: "number")
 
     checkbox_params_set_query_any(params, @form_params, query_name: "battle_type_eq_any",
                              checkboxes: [{params_name: "is_pve", value: 0},

@@ -91,7 +91,8 @@ class StatusesController < ApplicationController
                                           {params_name: "main_time_shifter",    value: proper_name["タイムシフター"]},
                                           {params_name: "main_battle_bard",     value: proper_name["バトルバード"]},
                                           {params_name: "main_dancer",          value: proper_name["ダンサー"]},
-                                          {params_name: "main_gremlin_tamer",   value: proper_name["グレムリンテイマー"]}])
+                                          {params_name: "main_gremlin_tamer",   value: proper_name["グレムリンテイマー"]},
+                                          {params_name: "main_medical",         value: proper_name["メディカリスト"]}])
   
     checkbox_params_set_query_any(params, @form_params, query_name: "status_dummy_sub1_class_class_id_or_status_dummy_sub2_class_class_id_eq_any",
                              checkboxes: [{params_name: "sub_fighter",         value: proper_name["ファイター"]},
@@ -110,7 +111,8 @@ class StatusesController < ApplicationController
                                           {params_name: "sub_time_shifter",    value: proper_name["タイムシフター"]},
                                           {params_name: "sub_battle_bard",     value: proper_name["バトルバード"]},
                                           {params_name: "sub_dancer",          value: proper_name["ダンサー"]},
-                                          {params_name: "sub_gremlin_tamer",   value: proper_name["グレムリンテイマー"]}])   
+                                          {params_name: "sub_gremlin_tamer",   value: proper_name["グレムリンテイマー"]},
+                                          {params_name: "sub_medical",         value: proper_name["メディカリスト"]}])
 
     checkbox_params_set_query_any(params, @form_params, query_name: "status_dummy_sub1_class_class_id_eq_any",
                              checkboxes: [{params_name: "sub1_fighter",         value: proper_name["ファイター"]},
@@ -129,7 +131,8 @@ class StatusesController < ApplicationController
                                           {params_name: "sub1_time_shifter",    value: proper_name["タイムシフター"]},
                                           {params_name: "sub1_battle_bard",     value: proper_name["バトルバード"]},
                                           {params_name: "sub1_dancer",          value: proper_name["ダンサー"]},
-                                          {params_name: "sub1_gremlin_tamer",   value: proper_name["グレムリンテイマー"]}])   
+                                          {params_name: "sub1_gremlin_tamer",   value: proper_name["グレムリンテイマー"]},
+                                          {params_name: "sub1_medical",         value: proper_name["メディカリスト"]}])
  
     checkbox_params_set_query_any(params, @form_params, query_name: "status_dummy_sub2_class_class_id_eq_any",
                              checkboxes: [{params_name: "sub2_fighter",         value: proper_name["ファイター"]},
@@ -148,7 +151,8 @@ class StatusesController < ApplicationController
                                           {params_name: "sub2_time_shifter",    value: proper_name["タイムシフター"]},
                                           {params_name: "sub2_battle_bard",     value: proper_name["バトルバード"]},
                                           {params_name: "sub2_dancer",          value: proper_name["ダンサー"]},
-                                          {params_name: "sub2_gremlin_tamer",   value: proper_name["グレムリンテイマー"]}])   
+                                          {params_name: "sub2_gremlin_tamer",   value: proper_name["グレムリンテイマー"]},
+                                          {params_name: "sub2_medical",         value: proper_name["メディカリスト"]}])
 
     params_to_form(params, @form_params, column_name: "equips_artifact_name", params_name: "artifact_form", type: "text")
     params_to_form(params, @form_params, column_name: "equips_pve_artifact_name",       params_name: "artifact_pve_form", type: "text")

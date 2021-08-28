@@ -115,15 +115,19 @@
     - #==========================================================================================================================
     - tbody_toggle(@form_params, params_name: "show_used",
                     label: {open: "その他ステータス情報を表示する", close: "その他ステータス情報を表示しない"},
-                    act_desc: "消費済AP、消費済ステータスポイント、善行値", base_first: false)
+                    act_desc: "消費済AP、消費済ステータスポイント、メル、ギルドメダル、名声", base_first: false)
     %tbody.closed
       %tr
         %td.indent
         - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "消費済AP", params_name: "used_ap_form")
         - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "消費済ステータスポイント", params_name: "used_stp_form")
+      %tr.sep
+        %td.indent
+        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "メル", params_name: "mel_form")
+        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "ギルドメダル", params_name: "medal_form")
       %tr
         %td.indent
-        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "善行値", params_name: "goodness_form", colspan: 3)
+        - td_form(f, @form_params, @placeholder, class_name: "formNum",  label: "名声", params_name: "kudos_form", colspan: 3)
 
     - #==========================================================================================================================
     %tbody
@@ -168,7 +172,9 @@
       - if @form_params["show_used"] == "1"
         %th.sep= sort_link(@search, :status_used_ap, "済AP", default_order: :desc)
         %th= sort_link(@search, :status_used_stp, "済ステP", default_order: :desc)
-        %th= sort_link(@search, :status_goodness, "善行値", default_order: :desc)
+        %th.sep= sort_link(@search, :mel, "メル", default_order: :desc)
+        %th= sort_link(@search, :medal, "メダル", default_order: :desc)
+        %th= sort_link(@search, :kudos, "名声", default_order: :desc)
       %th.sep= sort_link(@search, :created_at, "取得日", default_order: :desc)
       %th.sep{colspan: "2"} 結果リンク
   %tbody
@@ -203,7 +209,9 @@
         - if @form_params["show_used"] == "1"
           %td.sep= skill.status.used_ap
           %td= skill.status.used_stp
-          %td= skill.status.goodness
+          %td.sep= skill.status.mel
+          %td= skill.status.medal
+          %td= skill.status.kudos
         %td.sep= skill.created_at.to_s(:jp_date)
         %td.sep= character_link(skill.e_no)
 = paginate(@skills)
