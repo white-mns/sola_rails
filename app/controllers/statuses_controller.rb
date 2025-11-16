@@ -6,8 +6,8 @@ class StatusesController < ApplicationController
   def index
     placeholder_set
     param_set
-    @count	= Status.notnil_date().includes(:pc_name, :role, [main_class: :set_class], [sub1_class: :set_class], [sub2_class: :set_class], [equips: :artifact]).search(params[:q]).result.hit_count()
-    @search	= Status.notnil_date().includes(:pc_name, :role, [main_class: :set_class], [sub1_class: :set_class], [sub2_class: :set_class], [equips: :artifact]).page(params[:page]).search(params[:q])
+    @count	= Status.notnil_date().includes(:pc_name, :role, [main_class: :set_class], [sub1_class: :set_class], [sub2_class: :set_class], [equips: :artifact]).ransack(params[:q]).result.hit_count()
+    @search	= Status.notnil_date().includes(:pc_name, :role, [main_class: :set_class], [sub1_class: :set_class], [sub2_class: :set_class], [equips: :artifact]).page(params[:page]).ransack(params[:q])
     @search.sorts = "id asc" if @search.sorts.empty?
     @statuses	= @search.result.per(50)
   end
@@ -16,8 +16,8 @@ class StatusesController < ApplicationController
   def graphs
     placeholder_set
     param_set
-    @count	= Status.notnil_date().includes(:pc_name, :role, [main_class: :set_class], [sub1_class: :set_class], [sub2_class: :set_class], [equips: :artifact]).search(params[:q]).result.hit_count()
-    @search	= Status.notnil_date().includes(:pc_name, :role, [main_class: :set_class], [sub1_class: :set_class], [sub2_class: :set_class], [equips: :artifact]).page(params[:page]).search(params[:q])
+    @count	= Status.notnil_date().includes(:pc_name, :role, [main_class: :set_class], [sub1_class: :set_class], [sub2_class: :set_class], [equips: :artifact]).ransack(params[:q]).result.hit_count()
+    @search	= Status.notnil_date().includes(:pc_name, :role, [main_class: :set_class], [sub1_class: :set_class], [sub2_class: :set_class], [equips: :artifact]).page(params[:page]).ransack(params[:q])
     @search.sorts = "id asc" if @search.sorts.empty?
     @statuses	= @search.result.per(50)
 

@@ -6,8 +6,8 @@ class StatusDummiesController < ApplicationController
   def index
     placeholder_set
     param_set
-    @count	= StatusDummy.notnil_date().includes(:pc_name).search(params[:q]).result.hit_count()
-    @search	= StatusDummy.notnil_date().includes(:pc_name).page(params[:page]).search(params[:q])
+    @count	= StatusDummy.notnil_date().includes(:pc_name).ransack(params[:q]).result.hit_count()
+    @search	= StatusDummy.notnil_date().includes(:pc_name).page(params[:page]).ransack(params[:q])
     @search.sorts = "id asc" if @search.sorts.empty?
     @status_dummies	= @search.result.per(50)
   end

@@ -1,4 +1,13 @@
 class Ap < ApplicationRecord
+
+    def self.ransackable_attributes(auth_object = nil)
+      column_names
+    end
+
+    def self.ransackable_associations(auth_object = nil)
+      Array(reflect_on_all_associations).map(&:name).map(&:to_s)
+    end
+
 	belongs_to :battle_type, :foreign_key => :battle_type_id, :primary_key => :proper_id, :class_name => 'ProperName'
 	belongs_to :quest,       :foreign_key => :quest_id,       :primary_key => :proper_id, :class_name => 'ProperName'
 	belongs_to :difficulty,  :foreign_key => :difficulty_id,  :primary_key => :proper_id, :class_name => 'ProperName'
@@ -6,28 +15,28 @@ class Ap < ApplicationRecord
 
     scope :where_members, -> (params) {
         if params["party_members_e_no_form"] || params["party_members_name_form"] then
-            query = Party.includes(:pc_name).search(params[:q]).result.select(:ap_no)
+            query = Party.includes(:pc_name).ransack(params[:q]).result.select(:ap_no)
             where(ap_no: query)
         end
     }
 
     scope :where_leader, -> (params) {
         if params["leader_e_no_form"] || params["leader_name_form"] then
-            query = Party.includes(:pc_name).search(params[:q]).result.select(:ap_no)
+            query = Party.includes(:pc_name).ransack(params[:q]).result.select(:ap_no)
             where(ap_no: query)
         end
     }
 
     scope :where_fellows, -> (params) {
         if params["fellow_members_e_no_form"] || params["fellow_members_name_form"] then
-            query = Party.includes(:pc_name).search(params[:q]).result.select(:ap_no)
+            query = Party.includes(:pc_name).ransack(params[:q]).result.select(:ap_no)
             where(ap_no: query)
         end
     }
 
     scope :where_rivals, -> (params) {
         if params["rival_members_e_no_form"] || params["rival_members_name_form"] then
-            query = Party.includes(:pc_name).search(params[:q]).result.select(:ap_no)
+            query = Party.includes(:pc_name).ransack(params[:q]).result.select(:ap_no)
             where(ap_no: query)
         end
     }
