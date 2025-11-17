@@ -1,5 +1,5 @@
 # SoLAデータ小屋　表示用Railsアプリ
-SoLAデータ小屋は[Story of Lost Artifact](http://lostartifact.xsrv.jp/SoLA/login.php)を解析して得られるデータを扱った情報サイトです。  
+SoLAデータ小屋は『Story of Lost Artifact』を解析して得られるデータを扱った情報サイトです。  
 このプログラムはSoLAデータ小屋で実際に使用している表示用のRailsアプリです。  
 データ小屋の解析部分については[別リポジトリ](https://github.com/white-mns/sola_parse)を参照ください。
 

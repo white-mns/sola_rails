@@ -1,12 +1,14 @@
 %h1 SoLAデータ小屋
 %p
   このサイトでは『
-  %a{:href => "http://lostartifact.xsrv.jp/SoLA/login.php", :target => "_blank"} Story of Lost Artifact
-  』を解析して得られる情報を扱っています。
+  Story of Lost Artifact
+  』
+  %span{:style => "font-size:small;"} (本家サイト消滅によりリンク削除)
+  を解析して得られる情報を扱っていました。
   %br
-  データは毎日3時、6時、9時、15時、18時、21時に取得を開始します。SoLA公式サイトへの負荷がかからないように、1時間から2時間程かけて結果を取得してからデータ小屋に反映されます。
+  ゲーム終了に伴い、最終日までの全結果から取得したデータを残しています。
   %br
-  SoLA公式サイトから戦闘ログが削除されたシーズンの戦闘結果へのリンクは弊サイト#{link_to "データ小屋アーカイブス", "https://archives.teiki.org/sola/1/"}に保存したものに置き換えています。
+  戦闘結果へのリンクは弊サイト#{link_to "データ小屋アーカイブス", "https://archives.teiki.org/sola/1/"}に保存したものに置き換えています。
 %br
 %p= top_date_text(@last_updated, @uploaded_created)
 
