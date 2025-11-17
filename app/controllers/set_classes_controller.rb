@@ -6,8 +6,8 @@ class SetClassesController < ApplicationController
   def index
     placeholder_set
     param_set
-    @count	= SetClass.notnil_date().includes(:pc_name, :set_class).where(class_id: 1..Float::INFINITY).search(params[:q]).result.hit_count()
-    @search	= SetClass.notnil_date().includes(:pc_name, :set_class).where(class_id: 1..Float::INFINITY).page(params[:page]).search(params[:q])
+    @count	= SetClass.notnil_date().includes(:pc_name, :set_class).where(class_id: 1..Float::INFINITY).ransack(params[:q]).result.hit_count()
+    @search	= SetClass.notnil_date().includes(:pc_name, :set_class).where(class_id: 1..Float::INFINITY).page(params[:page]).ransack(params[:q])
     @search.sorts = "id asc" if @search.sorts.empty?
     @set_classes	= @search.result.per(50)
   end

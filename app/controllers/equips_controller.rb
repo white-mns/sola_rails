@@ -6,8 +6,8 @@ class EquipsController < ApplicationController
   def index
     placeholder_set
     param_set
-    @count	= Equip.notnil_date().includes(:pc_name, :artifact).where(artifact_id: 1..Float::INFINITY).search(params[:q]).result.hit_count()
-    @search	= Equip.notnil_date().includes(:pc_name, :artifact).where(artifact_id: 1..Float::INFINITY).page(params[:page]).search(params[:q])
+    @count	= Equip.notnil_date().includes(:pc_name, :artifact).where(artifact_id: 1..Float::INFINITY).ransack(params[:q]).result.hit_count()
+    @search	= Equip.notnil_date().includes(:pc_name, :artifact).where(artifact_id: 1..Float::INFINITY).page(params[:page]).ransack(params[:q])
     @search.sorts = "id asc" if @search.sorts.empty?
     @equips	= @search.result.per(50)
   end

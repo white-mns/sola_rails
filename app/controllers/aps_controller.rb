@@ -6,8 +6,8 @@ class ApsController < ApplicationController
   def index
     placeholder_set
     param_set
-    @count	= Ap.notnil_date().includes(:battle_type, :quest, :difficulty, [party_members: :pc_name]).where_members(@params_members).where_leader(@params_leader).where_fellows(@params_fellows).where_rivals(@params_rivals).search(params[:q]).result.hit_count()
-    @search	= Ap.notnil_date().includes(:battle_type, :quest, :difficulty, [party_members: :pc_name]).where_members(@params_members).where_leader(@params_leader).where_fellows(@params_fellows).where_rivals(@params_rivals).page(params[:page]).search(params[:q])
+    @count	= Ap.notnil_date().includes(:battle_type, :quest, :difficulty, [party_members: :pc_name]).where_members(@params_members).where_leader(@params_leader).where_fellows(@params_fellows).where_rivals(@params_rivals).ransack(params[:q]).result.hit_count()
+    @search	= Ap.notnil_date().includes(:battle_type, :quest, :difficulty, [party_members: :pc_name]).where_members(@params_members).where_leader(@params_leader).where_fellows(@params_fellows).where_rivals(@params_rivals).page(params[:page]).ransack(params[:q])
     @search.sorts = "ap_no desc" if @search.sorts.empty?
     @aps	= @search.result.per(50)
   end

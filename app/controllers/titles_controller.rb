@@ -6,8 +6,8 @@ class TitlesController < ApplicationController
   def index
     placeholder_set
     param_set
-    @count	= Title.notnil_date().includes(:pc_name).search(params[:q]).result.hit_count()
-    @search	= Title.notnil_date().includes(:pc_name).page(params[:page]).search(params[:q])
+    @count	= Title.notnil_date().includes(:pc_name).ransack(params[:q]).result.hit_count()
+    @search	= Title.notnil_date().includes(:pc_name).page(params[:page]).ransack(params[:q])
     @search.sorts = "id asc" if @search.sorts.empty?
     @titles	= @search.result.per(50)
   end

@@ -6,8 +6,8 @@ class LastArchivesController < ApplicationController
   def index
     placeholder_set
     param_set
-    @count	= LastArchive.notnil_date().search(params[:q]).result.hit_count()
-    @search	= LastArchive.notnil_date().page(params[:page]).search(params[:q])
+    @count	= LastArchive.notnil_date().ransack(params[:q]).result.hit_count()
+    @search	= LastArchive.notnil_date().page(params[:page]).ransack(params[:q])
     @search.sorts = "id asc" if @search.sorts.empty?
     @last_archives	= @search.result.per(50)
   end

@@ -6,8 +6,8 @@ class SkillsController < ApplicationController
   def index
     placeholder_set
     param_set
-    @count	= Skill.notnil_date().includes(:pc_name, [skill: [:cost, :timing]], [status: :role]).search(params[:q]).result.hit_count()
-    @search	= Skill.notnil_date().includes(:pc_name, [skill: [:cost, :timing]], [status: :role]).page(params[:page]).search(params[:q])
+    @count	= Skill.notnil_date().includes(:pc_name, [skill: [:cost, :timing]], [status: :role]).ransack(params[:q]).result.hit_count()
+    @search	= Skill.notnil_date().includes(:pc_name, [skill: [:cost, :timing]], [status: :role]).page(params[:page]).ransack(params[:q])
     @skills	= @search.result.per(50)
   end
 
@@ -15,7 +15,7 @@ class SkillsController < ApplicationController
   def history
     placeholder_set
     param_set
-    @search	= Skill.notnil_date().includes(:pc_name, [skill: [:cost, :timing]], [status: :role]).page(params[:page]).search(params[:q])
+    @search	= Skill.notnil_date().includes(:pc_name, [skill: [:cost, :timing]], [status: :role]).page(params[:page]).ransack(params[:q])
     @skills	= @search.result.per(50)
 
     @library_param = {
