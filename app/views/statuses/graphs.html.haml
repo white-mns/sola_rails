@@ -202,45 +202,45 @@
           - search_submit_button
 
 %h3.graph_title メインクラス
-= column_chart SetClass.where(class_num: 1).where.not(class_id: 0).search(params[:q]).result.to_sum_graph_proper_id(:class_id), ytitle:"人数", library: {style: "min-width:900px;"}, library: @library_param
+= column_chart SetClass.where(class_num: 1).where.not(class_id: 0).ransack(params[:q]).result.to_sum_graph_proper_id(:class_id), ytitle:"人数", library: {style: "min-width:900px;"}, library: @library_param
 %br
 
 %h3.graph_title サブクラス
-= column_chart SetClass.where.not(class_num: 1).where.not(class_id: 0).search(params[:q]).result.to_sum_graph_proper_id(:class_id), ytitle:"人数", library: {style: "min-width:900px;"}, library: @library_param
+= column_chart SetClass.where.not(class_num: 1).where.not(class_id: 0).ransack(params[:q]).result.to_sum_graph_proper_id(:class_id), ytitle:"人数", library: {style: "min-width:900px;"}, library: @library_param
 %br
 
 %h3.graph_title ロール
-= column_chart Status.search(params[:q]).result.to_sum_graph_proper_id(:role_id), ytitle:"人数", library: {style: "min-width:900px;"}, library: @library_param
+= column_chart Status.ransack(params[:q]).result.to_sum_graph_proper_id(:role_id), ytitle:"人数", library: {style: "min-width:900px;"}, library: @library_param
 %br
 
 %h3.graph_title 筋力
-= column_chart Status.search(params[:q]).result.to_range_graph(:str), ytitle:"人数", library: {style: "min-width:900px;"}, library: @library_param
+= column_chart Status.ransack(params[:q]).result.to_range_graph(:str), ytitle:"人数", library: {style: "min-width:900px;"}, library: @library_param
 %br
 
 %h3.graph_title 体力
-= column_chart Status.search(params[:q]).result.to_range_graph(:vit), ytitle:"人数", library: {style: "min-width:900px;"}, library: @library_param
+= column_chart Status.ransack(params[:q]).result.to_range_graph(:vit), ytitle:"人数", library: {style: "min-width:900px;"}, library: @library_param
 %br
 
 %h3.graph_title 感覚
-= column_chart Status.search(params[:q]).result.to_range_graph(:sense), ytitle:"人数", library: {style: "min-width:900px;"}, library: @library_param
+= column_chart Status.ransack(params[:q]).result.to_range_graph(:sense), ytitle:"人数", library: {style: "min-width:900px;"}, library: @library_param
 %br
 
 %h3.graph_title 敏捷
-= column_chart Status.search(params[:q]).result.to_range_graph(:agi), ytitle:"人数", library: {style: "min-width:900px;"}, library: @library_param
+= column_chart Status.ransack(params[:q]).result.to_range_graph(:agi), ytitle:"人数", library: {style: "min-width:900px;"}, library: @library_param
 %br
 
 %h3.graph_title 魔力
-= column_chart Status.search(params[:q]).result.to_range_graph(:mag), ytitle:"人数", library: {style: "min-width:900px;"}, library: @library_param
+= column_chart Status.ransack(params[:q]).result.to_range_graph(:mag), ytitle:"人数", library: {style: "min-width:900px;"}, library: @library_param
 %br
 
 %h3.graph_title 知力
-= column_chart Status.search(params[:q]).result.to_range_graph(:int), ytitle:"人数", library: {style: "min-width:900px;"}, library: @library_param
+= column_chart Status.ransack(params[:q]).result.to_range_graph(:int), ytitle:"人数", library: {style: "min-width:900px;"}, library: @library_param
 %br
 
 %h3.graph_title 意志
-= column_chart Status.search(params[:q]).result.to_range_graph(:will), ytitle:"人数", library: {style: "min-width:900px;"}, library: @library_param
+= column_chart Status.ransack(params[:q]).result.to_range_graph(:will), ytitle:"人数", library: {style: "min-width:900px;"}, library: @library_param
 %br
 
 %h3.graph_title 魅力
-= column_chart Status.search(params[:q]).result.to_range_graph(:charm), ytitle:"人数", library: {style: "min-width:900px;"}, library: @library_param
+= column_chart Status.ransack(params[:q]).result.to_range_graph(:charm), ytitle:"人数", library: {style: "min-width:900px;"}, library: @library_param
 %br

@@ -66,10 +66,10 @@
           - search_submit_button
 
 %h3.graph_title スキル設定数(ストーリー・クエスト用)
-= line_chart Skill.notnil_date().where(battle_type: 0).where_old_top(@latest_created, @form_params["show_old_top"], params).search(params[:q]).result.to_skill_history_graph(params, :skill_id), ytitle:"人数", library: {style: "min-width:900px;"}, library: @library_param
+= line_chart Skill.notnil_date().where(battle_type: 0).where_old_top(@latest_created, @form_params["show_old_top"], params).ransack(params[:q]).result.to_skill_history_graph(params, :skill_id), ytitle:"人数", library: {style: "min-width:900px;"}, library: @library_param
 %br
 
 %h3.graph_title スキル設定数(対人戦用)
-= line_chart Skill.notnil_date().where(battle_type: 1).where_old_top(@latest_created, @form_params["show_old_top"], params).search(params[:q]).result.to_skill_history_graph(params, :skill_id), ytitle:"人数", library: {style: "min-width:900px;"}, library: @library_param
+= line_chart Skill.notnil_date().where(battle_type: 1).where_old_top(@latest_created, @form_params["show_old_top"], params).ransack(params[:q]).result.to_skill_history_graph(params, :skill_id), ytitle:"人数", library: {style: "min-width:900px;"}, library: @library_param
 %br
 
